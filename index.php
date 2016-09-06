@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Khan leaderboards</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
+
+<?php
+
+	require_once("autoload.php");
+
+?>
 
 </body>
 </html>
