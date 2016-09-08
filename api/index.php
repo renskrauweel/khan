@@ -19,6 +19,7 @@ $requestTokenUrl = $baseUrl.'/api/auth/request_token';
 $accessTokenUrl = $baseUrl.'/api/auth/access_token';
 
 $options = array(
+    //belangrijkste bestand is ka client
     'consumer_key' => $consumerKey,
     'consumer_secret' => $consumerSecret,
     'server_uri' => $baseUrl,
