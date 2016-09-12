@@ -11,6 +11,9 @@ include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
 include_once  'config.php';
 
+$baseUrl = 'https://www.khanacademy.org';
+$requestTokenUrl = $baseUrl.'/api/auth/request_token';
+$accessTokenUrl = $baseUrl.'/api/auth/access_token';
 
 $options = array(
     'consumer_key' => $consumerKey,
