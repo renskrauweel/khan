@@ -9,10 +9,8 @@
 
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
+include_once 'config.php';
 
-$consumerKey = 'Ls5UXCpCuTDfRfxq';
-$consumerSecret = 'kB45N8qPMUE7gjKW';
-$loginCallback = 'http://localhost/api/';
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
