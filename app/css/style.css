@@ -1,0 +1,15 @@
+/* */
+html { 
+	background: url(../images/background.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+div.logo img {
+	position: absolute;
+	top: 4%;
+	left: 39%;
+	height: 150px;
+ 
+}
