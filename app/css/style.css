@@ -9,7 +9,6 @@ html {
 div.logo img {
 	position: absolute;
 	top: 4%;
-	left: 39%;
+	left: calc(50% - 140px);
 	height: 150px;
- 
 }
