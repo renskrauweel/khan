@@ -9,7 +9,7 @@
 
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
-include_once  'config.php'
+include_once  'config.php';
 
 
 $options = array(
