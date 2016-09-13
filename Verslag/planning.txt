@@ -1,0 +1,32 @@
+week 1:
+planning
+database ontwerp
+
+week2:
+functioneel ontwerp
+technisch ontwerp
+
+week3:
+slider
+fix errors api
+
+week4:
+front end klaar
+
+week5:
+data verwerking api
+
+week6:
+data verwerking api
+
+week7:
+cron job
+
+week8:
+cron job
+
+week9:
+acceptatie test
+
+week10:
+bug fixes
