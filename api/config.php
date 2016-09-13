@@ -1,8 +1,8 @@
-<<?php 
+<?php 
 
-$consumerKey = '5xLdMmpejfNeYvbw';
-$consumerSecret = 'r5czsqpG5cUsXW9K';
-$loginCallback = 'http://localhost/khan/khan/api/';
+$consumerKey = 'YgdmKf7XedvH9UH7';
+$consumerSecret = 'BRgsfmrcKTgJ9qUm';
+$loginCallback = 'http://khan.dev/api/';
 
 
 ?>
