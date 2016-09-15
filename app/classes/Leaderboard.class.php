@@ -2,7 +2,10 @@
 
 	Class Leaderboard
 	{
-		
+		public getData()
+		{
+			
+		}
 	}
 
 ?>
