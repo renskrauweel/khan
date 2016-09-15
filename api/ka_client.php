@@ -95,6 +95,10 @@ if (!empty($_GET['login'])) {
      * query and display its results if one was specified.
      */
     $defaultQuery = !empty($_GET['query']);
+     if ($defaultQuery == 1)
+    {
+        $defaultQuery = "";
+    }
     if (!$defaultQuery) {
         $defaultQuery = '/api/v1/user/students';
     }
