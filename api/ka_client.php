@@ -47,7 +47,7 @@ $options = array(
 
 $store = OAuthStore::instance('Session', $options);
 
-if ($_GET['login']) {
+if (!empty($_GET['login'])) {
     /*
      * Initial login handler (accessed by specifying login=1). Unlike most OAuth
      * APIs, the KA API skips the "authorize" step, and instead guides the user
@@ -68,7 +68,7 @@ if ($_GET['login']) {
     $queryParams = $request->getQueryString(false);
     header('Location: '.$requestTokenUrl.'?'.$queryParams);
 
-} elseif ($_GET['oauth_token']) {
+} elseif (!empty($_GET['oauth_token'])) {
     /*
      * Login callback. After the user logs in, they are redirected back to this
      * page with the oauth_token field specified. We then can use that token (as
@@ -89,12 +89,12 @@ if ($_GET['login']) {
     OAuthRequester::requestAccessToken($consumerKey, $oauthToken, 0, 'POST', $accessTokenParams);
     header('Location: ka_client.php?logged_in=1');
 
-} elseif ($_GET['logged_in']) {
+} elseif (!empty($_GET['logged_in'])) {
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
      */
-    $defaultQuery = $_GET['query'];
+    $defaultQuery = !empty($_GET['query']);
     if (!$defaultQuery) {
         $defaultQuery = '/api/v1/user/students';
     }
@@ -107,7 +107,7 @@ if ($_GET['login']) {
     </form>
 <?php
 
-    if ($_GET['query']) {
+    if (!empty($_GET['query'])) {
         $request = new OAuthRequester($baseUrl.$_GET['query'], 'GET');
         $result = $request->doRequest(0);
         //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';

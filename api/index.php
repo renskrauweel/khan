@@ -24,15 +24,13 @@
 
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
-include_once 'config.php';
-
+include_once  'config.php';
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
 $accessTokenUrl = $baseUrl.'/api/auth/access_token';
 
 $options = array(
-    //belangrijkste bestand is ka client
     'consumer_key' => $consumerKey,
     'consumer_secret' => $consumerSecret,
     'server_uri' => $baseUrl,
@@ -44,7 +42,7 @@ $options = array(
 
 $store = OAuthStore::instance('Session', $options);
 
-if ($_GET['login']) {
+if (!empty($_GET['login'])) {
     /*
      * Initial login handler (accessed by specifying login=1). Unlike most OAuth
      * APIs, the KA API skips the "authorize" step, and instead guides the user
@@ -65,7 +63,7 @@ if ($_GET['login']) {
     $queryParams = $request->getQueryString(false);
     header('Location: '.$requestTokenUrl.'?'.$queryParams);
 
-} elseif ($_GET['oauth_token']) {
+} elseif (!empty($_GET['oauth_token'])) {
     /*
      * Login callback. After the user logs in, they are redirected back to this
      * page with the oauth_token field specified. We then can use that token (as
@@ -86,12 +84,12 @@ if ($_GET['login']) {
     OAuthRequester::requestAccessToken($consumerKey, $oauthToken, 0, 'POST', $accessTokenParams);
     header('Location: ka_client.php?logged_in=1');
 
-} elseif ($_GET['logged_in']) {
+} elseif (!empty($_GET['logged_in'])) {
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
      */
-    $defaultQuery = $_GET['query'];
+    $defaultQuery = !empty($_GET['query']);
     if (!$defaultQuery) {
         $defaultQuery = '/api/v1/user/students';
     }
@@ -100,14 +98,16 @@ if ($_GET['login']) {
     <form>
         <input type="hidden" name="logged_in" value=1>
         <input type="text" name="query" value="<?php echo $defaultQuery; ?>" size=40><br>
-        <input type="submit" value="Submit">
+        <input type="submit" id= "sknop" value="Submit">
     </form>
 <?php
 
-    if ($_GET['query']) {
+    if (!empty($_GET['query'])) {
         $request = new OAuthRequester($baseUrl.$_GET['query'], 'GET');
         $result = $request->doRequest(0);
-        echo 'Response: <br><code>'.var_dump($result['body']).'</code>';
+        //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';
+        $resultObject = json_decode($result['body']);
+        var_dump($resultObject);
     }
 } else {
     /*
@@ -117,7 +117,7 @@ if ($_GET['login']) {
 
     <form>
         <input type="hidden" name="login" value=1>
-        <button type=submit id ="knop">Log in...</button>
+        <button type=submit>Log in...</button>
     </form>
 <?php
 }
