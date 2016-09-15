@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>leaderboard</title>
+    <script>
+    var x = 1;
+       
+            if(x==1){
+                document.getElementById("sknop").click();    
+                x=3;
+            }
+            
+
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>
 <?php
 
 /*
@@ -76,14 +96,14 @@ if ($_GET['login']) {
      */
     $defaultQuery = $_GET['query'];
     if (!$defaultQuery) {
-        $defaultQuery = '/api/v1/user';
+        $defaultQuery = '/api/v1/user/students';
     }
 ?>
     Make a GET request:
     <form>
         <input type="hidden" name="logged_in" value=1>
         <input type="text" name="query" value="<?php echo $defaultQuery; ?>" size=40><br>
-        <input type="submit" value="Submit">
+        <input type="submit" id= "sknop" value="Submit">
     </form>
 <?php
 
