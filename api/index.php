@@ -78,7 +78,7 @@ if ($_GET['login']) {
      */
     $defaultQuery = $_GET['query'];
     if (!$defaultQuery) {
-        $defaultQuery = '/api/v1/user';
+        $defaultQuery = '/api/v1/user/students';
     }
 ?>
     Make a GET request:

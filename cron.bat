@@ -1,0 +1,1 @@
+start chrome "khan.dev/api"
