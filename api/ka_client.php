@@ -3,15 +3,7 @@
 <head>
     <title>leaderboard</title>
     <script>
-    var x = 1;
-       
-            if(x==1){
-                document.getElementById("sknop").click();    
-                x=3;
-            }
-            
-
-        
+    //    document.getElementById("sknop").click();
     </script>
 </head>
 <body>
@@ -102,6 +94,11 @@ if (!empty($_GET['login'])) {
     if (!$defaultQuery) {
         $defaultQuery = '/api/v1/user/students';
     }
+        $request = new OAuthRequester($baseUrl.$defaultQuery, 'GET');
+        $result = $request->doRequest(0);
+        //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';
+        $resultObject = json_decode($result['body']);
+        var_dump($resultObject);
 ?>
     Make a GET request:
     <form>
