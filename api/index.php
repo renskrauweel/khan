@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>leaderboard</title>
+    <script>
+        window.onload = function() {
+            document.getElementById("knop").click();
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
 <?php
 
 /*
@@ -102,7 +117,7 @@ if ($_GET['login']) {
 
     <form>
         <input type="hidden" name="login" value=1>
-        <button type=submit>Log in...</button>
+        <button type=submit id ="knop">Log in...</button>
     </form>
 <?php
 }
