@@ -106,7 +106,7 @@ if (!empty($_GET['login'])) {
         foreach ($resultObject as $student) {
             echo "<h3>{$student->student_summary->username}</h3>";
 
-            echo "<h4>Totaal aantal badges</h4>";
+            echo "<h4>Behaalde badges</h4>";
 
             var_dump($student->badge_counts);
 
@@ -115,6 +115,7 @@ if (!empty($_GET['login'])) {
                 $badgeCount += $student->badge_counts->$i;
             }
 
+            echo "Badge count:";
             var_dump($badgeCount);
 
             $students[$student->student_summary->nickname] = $badgeCount;
