@@ -120,7 +120,7 @@ if (!empty($_GET['login'])) {
             $students[$student->student_summary->nickname] = $badgeCount;
             //$students[$student->student_summary->username] = $student->student_summary->nickname;
         }
-        asort($students);
+        ksort($students);
         var_dump($students);
 ?>
     Make a GET request:
