@@ -98,7 +98,30 @@ if (!empty($_GET['login'])) {
         $result = $request->doRequest(0);
         //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';
         $resultObject = json_decode($result['body']);
-        var_dump($resultObject);
+        //var_dump($resultObject);
+
+        //students
+        $students = [];
+        echo "<h1>Alle studenten</h1>";
+        foreach ($resultObject as $student) {
+            echo "<h3>{$student->student_summary->username}</h3>";
+
+            echo "<h4>Totaal aantal badges</h4>";
+
+            var_dump($student->badge_counts);
+
+            $badgeCount = 0;
+            for ($i=0; $i <=5 ; $i++) { 
+                $badgeCount += $student->badge_counts->$i;
+            }
+
+            var_dump($badgeCount);
+
+            $students[$student->student_summary->nickname] = $badgeCount;
+            //$students[$student->student_summary->username] = $student->student_summary->nickname;
+        }
+        asort($students);
+        var_dump($students);
 ?>
     Make a GET request:
     <form>
