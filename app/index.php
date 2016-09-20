@@ -2,10 +2,11 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/style.css" type="text/css" >
-	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="javascripts/jquery.easing.1.3.js"></script>
-  <script src="javascripts/jquery.animate-enhanced.min.js"></script>
-  <script src="dist/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
+	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="javascripts/jquery.easing.1.3.js"></script>
+	<script src="javascripts/jquery.animate-enhanced.min.js"></script>
+	<script src="dist/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
   <script>
     $(function() {
       $('#slides').superslides({
