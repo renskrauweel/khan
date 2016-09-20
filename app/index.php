@@ -20,7 +20,10 @@
 	<div class="logo"><img src="images/logo_plain.png" alt="logo"></div>
 	 <div id="slides">
     <div class="slides-container">
-      <div class="single-slide"><h1>I403A</h1></div>
+      <div class="single-slide">
+	      <h1>I403A</h1>
+	      <li></li>
+      </div>
       <div class="single-slide"><h1>I403B</h1></div>
      </div>
 

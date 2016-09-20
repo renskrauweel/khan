@@ -15,7 +15,8 @@ div.logo img {
 div.single-slide h1 {
 	position: absolute;
 	top: 5%;
-	left: calc(68% - 140px);
+	left: calc(64% - 140px);
 	font-size: 55px;
 	font-family: 'Cabin', sans-serif;
+	color: #fff;
 }
