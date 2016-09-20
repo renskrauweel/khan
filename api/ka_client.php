@@ -21,7 +21,8 @@
 
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
-include_once  'config.php';
+include_once 'config.php';
+include_once 'db.php';
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
@@ -123,6 +124,21 @@ if (!empty($_GET['login'])) {
         }
         ksort($students);
         var_dump($students);
+
+        //insert to DB
+        $positions = [];
+        foreach ($students as $nickname => $badgeCount) {
+            $positions[] = $nickname;
+        }
+        var_dump($positions);
+
+        $mysqli=DB::get();
+
+        $result=$mysqli->query(<<<EOT
+        INSERT INTO leaderboard (course, description, first, second, third)
+        VALUES ("engels", "Leerlingen all time", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
+EOT
+        );
 ?>
     Make a GET request:
     <form>
