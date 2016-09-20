@@ -122,7 +122,7 @@ if (!empty($_GET['login'])) {
             $students[$student->student_summary->nickname] = $badgeCount;
             //$students[$student->student_summary->username] = $student->student_summary->nickname;
         }
-        ksort($students);
+        arsort($students);
         var_dump($students);
 
         //insert to DB
