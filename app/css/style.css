@@ -9,6 +9,12 @@ html {
 div.logo img {
 	position: absolute;
 	top: 4%;
-	left: calc(50% - 140px);
+	left: calc(38% - 140px);
 	height: 150px;
+}
+div.single-slide h1 {
+	position: absolute;
+	top: 5%;
+	left: calc(68% - 140px);
+	font-size: 55px;
 }
