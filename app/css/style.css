@@ -30,7 +30,14 @@ div.player_list {
 }
 
 div.player_list li {
-	background: gray;
+	//background: gray;
+	border-bottom: 5px solid #fff;
 	margin-bottom: 10px;
 	padding: 15px;
+	padding-bottom: 10px;
+}
+div.player_list {
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 15px;
+	border-radius: 7px;
 }
