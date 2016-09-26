@@ -1,8 +1,5 @@
 <?php
-
-	require_once("classes/Leaderboard.class.php");
-	require_once("classes/LeaderboardStudents.class.php");
-	require_once("classes/LeaderboardClasses.class.php");
-	require_once("classes/LeaderboardClassroom.class.php");
+	require_once("app/db.php");
+	require_once("app/classes/Leaderboard.class.php");
 
 ?>
