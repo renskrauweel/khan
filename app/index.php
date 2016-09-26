@@ -17,6 +17,10 @@
 	<title>Khan Board</title>
 </head>
 <body>
+<?php 
+	require_once("autoload.php");
+	var_dump(Leaderboard::getData());
+ ?>
 	<div class="logo"><img src="images/logo_plain.png" alt="logo"></div>
 	 <div id="slides">
     <div class="slides-container">
