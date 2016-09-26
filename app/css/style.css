@@ -20,3 +20,17 @@ div.single-slide h1 {
 	font-family: 'Cabin', sans-serif;
 	color: #fff;
 }
+div.player_list {
+	margin: 0 auto;
+	width: 40%;
+	margin-top: 20%;
+	color: #fff;
+    font-size: 45px;
+    font-family: 'Cabin', sans-serif;
+}
+
+div.player_list li {
+	background: gray;
+	margin-bottom: 10px;
+	padding: 15px;
+}
