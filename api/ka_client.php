@@ -23,6 +23,7 @@ include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
 include_once 'config.php';
 include_once 'db.php';
+include_once '../app/classes/leaderboard.class.php';
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
@@ -101,44 +102,8 @@ if (!empty($_GET['login'])) {
         $resultObject = json_decode($result['body']);
         //var_dump($resultObject);
 
-        //students
-        $students = [];
-        echo "<h1>Alle studenten</h1>";
-        foreach ($resultObject as $student) {
-            echo "<h3>{$student->student_summary->username}</h3>";
-
-            echo "<h4>Behaalde badges</h4>";
-
-            var_dump($student->badge_counts);
-
-            $badgeCount = 0;
-            for ($i=0; $i <=5 ; $i++) { 
-                $badgeCount += $student->badge_counts->$i;
-            }
-
-            echo "Badge count:";
-            var_dump($badgeCount);
-
-            $students[$student->student_summary->nickname] = $badgeCount;
-            //$students[$student->student_summary->username] = $student->student_summary->nickname;
-        }
-        arsort($students);
-        var_dump($students);
-
-        //insert to DB
-        $positions = [];
-        foreach ($students as $nickname => $badgeCount) {
-            $positions[] = $nickname;
-        }
-        var_dump($positions);
-
-        $mysqli=DB::get();
-
-        $result=$mysqli->query(<<<EOT
-        INSERT INTO leaderboard (course, description, first, second, third)
-        VALUES ("engels", "Leerlingen all time", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
-EOT
-        );
+        $students = leaderboard::getStudentsAlltime($resultObject);
+        Leaderboard::insertStudents($students);
 ?>
     Make a GET request:
     <form>
