@@ -68,17 +68,26 @@ EOT
 
 		public static function sortByClass($file)
 		{
-			$classes = [];
+			$students = [];
 			while(! feof($file))
 			{
 				$line = fgetcsv($file);
-
-				$line = explode(";", $line[0]);
-				$classes[] = $line;
+				if (!empty($line)) {
+					$line = explode(";", $line[0]);
+					$students[] = $line;
+				}
 			}
 
 			fclose($file);
-			var_dump($classes);
+
+			$classes = [];
+			foreach ($students as $student) {
+				//var_dump($student);
+				if(in_array($student[0], $student)) {
+					$classes = $student[0];
+				}
+				var_dump($classes);
+			}
 		}
 	}
 
