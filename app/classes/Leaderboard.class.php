@@ -81,13 +81,26 @@ EOT
 			fclose($file);
 
 			$classes = [];
+
+			//Setting up classes
 			foreach ($students as $student) {
-				//var_dump($student);
 				if(in_array($student[0], $student)) {
-					$classes = $student[0];
+					$classes[$student[0]] = [];
 				}
-				var_dump($classes);
 			}
+
+			//Filling classes
+			foreach ($classes as $class) {
+				foreach ($students as $student) {
+					//Adding students to classes
+					if ($student[0] == array_key_exists($student[0], $classes)) {
+						if (!in_array($student[1], $classes[$student[0]])) {
+							$classes[$student[0]][] = $student[1];
+						}
+					}
+				}
+			}
+			return $classes;
 		}
 	}
 

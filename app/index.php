@@ -21,6 +21,8 @@
 <?php 
 	require_once("autoload.php");
   $data = Leaderboard::getData();
+  $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
+  var_dump($classes);
  ?>
 	<div class="logo">
 		<img src="images/logo_plain.png" alt="logo">
