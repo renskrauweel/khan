@@ -9,35 +9,47 @@ html {
 div.logo img {
 	position: absolute;
 	top: 4%;
-	left: calc(38% - 140px);
+	left: calc(50% - 140px);
 	height: 150px;
 }
-div.single-slide h1 {
-	position: absolute;
-	top: 5%;
-	left: calc(64% - 140px);
-	font-size: 55px;
-	font-family: 'Cabin', sans-serif;
+div.class {
+	margin: 0 auto;
+	margin-top: 15%;
+	width: 5%;
+	font-family: 'Raleway', sans-serif;
+	font-size: 30px;
 	color: #fff;
 }
-div.player_list {
-	margin: 0 auto;
-	width: 40%;
-	margin-top: 20%;
+div.class-left ol,
+div.class-right ol {
+	padding: 10px;
+	font-size: 28px;
+	list-style-type: none;
+	font-family: 'Raleway', sans-serif;
+}
+div.class-left h2,
+div.class-right h2 {
+	font-size: 40px;
+	text-align: center;
 	color: #fff;
-    font-size: 45px;
-    font-family: 'Cabin', sans-serif;
+	font-family: 'PT Sans', sans-serif;
+	background: rgba(54, 25, 25, .5);
+	padding: 8px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+div.class-left {
+	margin: 0 auto;
+	margin-left: 10%;
+	width: 30%;
+	float: left;
+	padding: 20px;
+}
+div.class-right {
+	margin: 0 auto;
+	margin-right: 10%;
+	width: 30%;
+	float: right;
+	padding: 20px;
 }
 
-div.player_list li {
-	//background: gray;
-	border-bottom: 5px solid #fff;
-	margin-bottom: 10px;
-	padding: 15px;
-	padding-bottom: 10px;
-}
-div.player_list {
-	background-color: rgba(0, 0, 0, 0.4);
-	padding: 15px;
-	border-radius: 7px;
-}
