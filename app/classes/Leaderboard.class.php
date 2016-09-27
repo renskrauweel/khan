@@ -65,6 +65,21 @@ EOT
 EOT
 	        );
 		}
+
+		public static function sortByClass($file)
+		{
+			$classes = [];
+			while(! feof($file))
+			{
+				$line = fgetcsv($file);
+
+				$line = explode(";", $line[0]);
+				$classes[] = $line;
+			}
+
+			fclose($file);
+			var_dump($classes);
+		}
 	}
 
 ?>
