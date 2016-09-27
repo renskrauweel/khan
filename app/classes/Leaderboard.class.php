@@ -6,14 +6,32 @@
 	{
 		public static function getData()
 		{
+			//Dates
+			$today = date("o-m-d");
+			$yesterday = date("o-m-d", strtotime("-1 days"));
+			
 			$mysqli=DB::get();
 
-			$result=$mysqli->query(<<<EOT
-			SELECT * FROM leaderboard
+			//Today
+			$resultToday=$mysqli->query(<<<EOT
+			SELECT * FROM leaderboard WHERE date LIKE "%{$today}%"
 EOT
 			);
-			$row=$result->fetch_assoc();
-			return $row;
+			$rowToday=$resultToday->fetch_assoc();
+
+			//Yesterday
+			$resultYesterday=$mysqli->query(<<<EOT
+			SELECT * FROM leaderboard WHERE date LIKE "%{$yesterday}%"
+EOT
+			);
+			$rowYesterday=$resultYesterday->fetch_assoc();
+			
+			$data = [
+				"today" => $rowToday,
+				"yesterday" => $rowYesterday
+			];
+
+			return $data;
 		}
 
 		public static function getStudentsAlltime($resultObject)

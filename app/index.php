@@ -19,30 +19,31 @@
 <body>
 <?php 
 	require_once("autoload.php");
+  $data = Leaderboard::getData();
 
  ?>
 	<div class="logo"><img src="images/logo_plain.png" alt="logo"></div>
 	 <div id="slides">
     <div class="slides-container">
       <?php 
-				$data = Leaderboard::getData();
+
 				echo <<<EOT
       <div class="single-slide">
-	      <h1>{$data['description']}</h1>
+	      <h1>{$data['today']['description']}</h1>
 	    
 
 				<div class="player_list">
 					<ol>
-						<li>{$data['first']}</li>
-						<li>{$data['second']}</li>
-						<li>{$data['third']}</li>
+						<li>{$data['today']['first']}</li>
+						<li>{$data['today']['second']}</li>
+						<li>{$data['today']['third']}</li>
 					</ol>
 				</div>
 
 
 
       </div>
-      <div class="single-slide"><h1>{$data['description']}</h1></div>
+      <div class="single-slide"><h1>{$data['today']['description']}</h1></div>
      </div>
 
 EOT;
