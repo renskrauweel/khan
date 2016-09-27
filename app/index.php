@@ -30,27 +30,31 @@
 				 <div class="single-slide">
      			 <?php echo <<<EOT
 
-     				 <div class="class">
-     				 	{$data['today']['description']}
-     				 </div>
+     				<div class="content">
 
-   					<div class="class-left">
-					<h2>GISTEREN</h2>
-						<ol>
-							<li>{$data['today']['first']}</li>
-							<li>{$data['today']['second']}</li>
-							<li>{$data['today']['third']}</li>
-						</ol>
-					</div>
-					
-					<div class="class-right">
-					<h2>VANDAAG</h2>
-						<ol>
-							<li>{$data['yesterday']['first']}</li>
-							<li>{$data['yesterday']['second']}</li>
-							<li>{$data['yesterday']['third']}</li>
-						</ol>
-					</div>			
+     				
+     			 		<div class="class-mid">
+	     				 	<h2>{$data['today']['description']}</h2>
+	     				 </div>
+
+	   					<div class="class-left">
+						<h2>GISTEREN</h2>
+							<ol>
+								<li>{$data['today']['first']}</li>
+								<li>{$data['today']['second']}</li>
+								<li>{$data['today']['third']}</li>
+							</ol>
+						</div>
+
+						<div class="class-right">
+						<h2>VANDAAG</h2>
+							<ol>
+								<li>{$data['yesterday']['first']}</li>
+								<li>{$data['yesterday']['second']}</li>
+								<li>{$data['yesterday']['third']}</li>
+							</ol>
+						</div>	
+					</div>		
 EOT;
  				?>
  			</div>
