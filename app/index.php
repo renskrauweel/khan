@@ -35,7 +35,7 @@
 				<div class="player_list">
 					<ol>
 						<li>{$data['today']['first']}</li>
-						<li>{$data['today']['second']}</li>
+						<li>{$data['yesterday']['second']}</li>
 						<li>{$data['today']['third']}</li>
 					</ol>
 				</div>
