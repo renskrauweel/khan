@@ -11,7 +11,7 @@
 </body>
 </html>
 <?php
-
+session_start();
 /*
  * Khan Academy API sample PHP client.
  *
@@ -19,6 +19,26 @@
  * the individual steps.
  */
 
+/*
+var_dump($_SESSION["oauth_5xLdMmpejfNeYvbw"]);
+
+setcookie("consumer_key", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["consumer_key"],time() + 9999999999999999);
+setcookie("consumer_secret", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["consumer_secret"],time() + 9999999999999999);
+setcookie("server_uri", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["server_uri"],time() + 9999999999999999);
+setcookie("request_token_uri", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["request_token_uri"],time() + 9999999999999999);
+setcookie("access_token_uri", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["access_token_uri"],time() + 9999999999999999);
+setcookie("token_type", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token_type"],time() + 9999999999999999);
+setcookie("token", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token"],time() + 9999999999999999);
+setcookie("token_secret", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token_secret"],time() + 9999999999999999);
+
+var_dump($_COOKIE);
+$_SESSION["oauth_5xLdMmpejfNeYvbw"] = $_COOKIE;
+*/
+$_SESSION = unserialize($_COOKIE["Session_cookie"]);
+var_dump($_SESSION);
+setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
+var_dump($_COOKIE["Session_cookie"]);
+var_dump(unserialize($_COOKIE["Session_cookie"]));
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
 include_once 'config.php';
@@ -53,7 +73,7 @@ if (!empty($_GET['login'])) {
      * back), then redirect the user to the resulting URL.
      */
     $requestTokenParams = array('oauth_callback' => $loginCallback);
-
+    die(var_dump($requestTokenParams));
     $userId = 0;
     $server = $store->getServer($consumerKey, $userId);
 
