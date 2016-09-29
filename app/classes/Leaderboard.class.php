@@ -6,14 +6,32 @@
 	{
 		public static function getData()
 		{
+			//Dates
+			$today = date("o-m-d");
+			$yesterday = date("o-m-d", strtotime("-1 days"));
+			
 			$mysqli=DB::get();
 
-			$result=$mysqli->query(<<<EOT
-			SELECT * FROM leaderboard
+			//Today
+			$resultToday=$mysqli->query(<<<EOT
+			SELECT * FROM leaderboard WHERE date LIKE "%{$today}%"
 EOT
 			);
-			$row=$result->fetch_assoc();
-			return $row;
+			$rowToday=$resultToday->fetch_assoc();
+
+			//Yesterday
+			$resultYesterday=$mysqli->query(<<<EOT
+			SELECT * FROM leaderboard WHERE date LIKE "%{$yesterday}%"
+EOT
+			);
+			$rowYesterday=$resultYesterday->fetch_assoc();
+			
+			$data = [
+				"today" => $rowToday,
+				"yesterday" => $rowYesterday
+			];
+
+			return $data;
 		}
 
 		public static function getStudentsAlltime($resultObject)
@@ -43,9 +61,46 @@ EOT
 
 	        $result=$mysqli->query(<<<EOT
 	        INSERT INTO leaderboard (course, description, first, second, third)
-	        VALUES ("engels", "Leerlingen all time", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
+	        VALUES ("engels", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
 EOT
 	        );
+		}
+
+		public static function sortByClass($file)
+		{
+			$students = [];
+			while(! feof($file))
+			{
+				$line = fgetcsv($file);
+				if (!empty($line)) {
+					$line = explode(";", $line[0]);
+					$students[] = $line;
+				}
+			}
+
+			fclose($file);
+
+			$classes = [];
+
+			//Setting up classes
+			foreach ($students as $student) {
+				if(in_array($student[0], $student)) {
+					$classes[$student[0]] = [];
+				}
+			}
+					// Eric aproves "Gewoon goed pik" -Eric 2k16
+			//Filling classes
+			foreach ($classes as $class) {
+				foreach ($students as $student) {
+					//Adding students to classes
+					if ($student[0] == array_key_exists($student[0], $classes)) {
+						if (!in_array($student[1], $classes[$student[0]])) {
+							$classes[$student[0]][] = $student[1];
+						}
+					}
+				}
+			}
+			return $classes;
 		}
 	}
 
