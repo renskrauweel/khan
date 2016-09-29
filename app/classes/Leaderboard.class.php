@@ -88,7 +88,7 @@ EOT
 					$classes[$student[0]] = [];
 				}
 			}
-
+					// Eric aproves "Gewoon goed pik" -Eric 2k16
 			//Filling classes
 			foreach ($classes as $class) {
 				foreach ($students as $student) {
