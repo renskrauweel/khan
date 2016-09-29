@@ -3,7 +3,13 @@
 <head>
     <title>leaderboard</title>
     <script>
-    //    document.getElementById("sknop").click();
+    //    document.getElementById("sknop").click();\
+
+    var time = 1000 * 60 * 60 * 24; // 24 hours
+	setTimeout(function(){
+		location.reload();
+   	},time);
+
     </script>
 </head>
 <body>
