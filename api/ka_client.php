@@ -77,7 +77,6 @@ if (!empty($_GET['login'])) {
      * back), then redirect the user to the resulting URL.
      */
     $requestTokenParams = array('oauth_callback' => $loginCallback);
-    die(var_dump($requestTokenParams));
     $userId = 0;
     $server = $store->getServer($consumerKey, $userId);
 
