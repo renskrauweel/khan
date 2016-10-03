@@ -22,7 +22,6 @@
 	require_once("autoload.php");
   $data = Leaderboard::getData();
   $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
-  var_dump($classes);
  ?>
 	<div class="logo">
 		<img src="images/logo_plain.png" alt="logo">
@@ -42,18 +41,18 @@
 	   					<div class="class-left">
 						<h2>GISTEREN</h2>
 							<ol>
-								<li>{$data['yesterday']['first']}</li>
-								<li>{$data['yesterday']['second']}</li>
-								<li>{$data['yesterday']['third']}</li>
+								<li class="gold"><span>{$data['yesterday']['first']}</span></li>
+								<li class="silver"><span>{$data['yesterday']['second']}</span></li>
+								<li class="bronze"><span>{$data['yesterday']['third']}</span></li>
 							</ol>
 						</div>
 
 						<div class="class-right">
 						<h2>VANDAAG</h2>
 							<ol>
-								<li>{$data['today']['first']}</li>
-								<li>{$data['today']['second']}</li>
-								<li>{$data['today']['third']}</li>
+								<li class="gold"><span>{$data['today']['first']}</span></li>
+								<li class="silver"><span>{$data['today']['second']}</span></li>
+								<li class="bronze"><span>{$data['today']['third']}</span></li>
 							</ol>
 						</div>	
 					</div>		

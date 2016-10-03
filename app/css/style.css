@@ -9,14 +9,40 @@ html {
 div.logo img {
 	position: absolute;
 	top: 4%;
-	left: calc(50% - 140px);
-	height: 150px;
+	left: calc(50% - 250px);
+	width: 500px;
+
 }
 div.content {
 	margin: 100px;
 	margin-top: 15%;
 }
+li {
+	height: 65px;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+li.gold{
+   background: url("../images/gold.png") no-repeat top left;
+   background-size: 50px auto;
+}
+li.silver {
+   background: url("../images/silver.png") no-repeat top left;
+   background-size: 50px auto;
+}
+li.bronze {
+   background: url("../images/bronze.png") no-repeat top left;
+	background-size: 50px auto;
+}
+li span{
+	display: block;
+	margin-left: 70px;
+}
+
 div.class-mid h2 {
+	margin: 0;
 	font-size: 40px;
 	text-align: center;
 	color: #fff;
@@ -28,31 +54,39 @@ div.class-mid h2 {
 div.class-left ol,
 div.class-right ol {
 	padding: 10px;
-	font-size: 28px;
+	font-size: 40px;
 	color: #fff;
 	list-style-type: none;
 	font-family: 'Raleway', sans-serif;
 }
+
+div.class-left {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 48%;
+	float: left;
+	background: rgba(54, 25, 25, .5);
+	border-radius: 5px;
+}
+div.class-right {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 48%;
+	float: right;
+	background: rgba(54, 25, 25, .5);
+	border-radius: 5px;
+}
 div.class-left h2,
 div.class-right h2 {
+	margin: 0;
 	font-size: 40px;
 	text-align: center;
 	color: #fff;
 	font-family: 'PT Sans', sans-serif;
 	background: rgba(54, 25, 25, .5);
 	padding: 8px;
-	border-radius: 5px;
+	border-radius: 5px 5px 0 0;
 	margin-bottom: 5px;
-}
-div.class-left {
-	margin: 0 auto;
-	width: 48%;
-	float: left;
-}
-div.class-right {
-	margin: 0 auto;
-	width: 48%;
-	float: right;
-
+	z-index: 999;
 }
 
