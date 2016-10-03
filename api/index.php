@@ -14,7 +14,7 @@
 </body>
 </html>
 <?php
-
+session_start();
 /*
  * Khan Academy API sample PHP client.
  *
