@@ -4,7 +4,7 @@
     <title>leaderboard</title>
     <script>
         window.onload = function() {
-            document.getElementById("knop").click();
+        //    document.getElementById("knop").click();
 
         }
     </script>
@@ -14,17 +14,23 @@
 </body>
 </html>
 <?php
-
+session_start();
 /*
  * Khan Academy API sample PHP client.
  *
  * See the README for instructions, and the comments below for the details on
  * the individual steps.
  */
-
+if(isset($_COOKIE["Session_cookie"]))
+{
+    $_SESSION = unserialize($_COOKIE["Session_cookie"]);
+    setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
+}
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
-include_once  'config.php';
+include_once 'config.php';
+include_once 'db.php';
+include_once '../app/classes/leaderboard.class.php';
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
@@ -84,19 +90,51 @@ if (!empty($_GET['login'])) {
     OAuthRequester::requestAccessToken($consumerKey, $oauthToken, 0, 'POST', $accessTokenParams);
     header('Location: ka_client.php?logged_in=1');
 
-} elseif (!empty($_GET['logged_in'])) {
+} elseif (!empty($_GET['logged_in']) || isset($_COOKIE["Session_cookie"]) ) {
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
      */
-    $defaultQuery = !empty($_GET['query']);
-    if ($defaultQuery == 1)
+$defaultQuery = !empty($_GET['query']);
+     if ($defaultQuery == 1)
     {
         $defaultQuery = "";
     }
     if (!$defaultQuery) {
         $defaultQuery = '/api/v1/user/students';
     }
+        $request = new OAuthRequester($baseUrl.$defaultQuery, 'GET');
+        $result = $request->doRequest(0);
+        //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';
+        $resultObject = json_decode($result['body']);
+        //var_dump($resultObject);
+
+        $students = leaderboard::getStudentsAlltime($resultObject);
+        Leaderboard::insertStudents($students);
+
+        //students
+            $students = [];
+            echo "<h1>Alle studenten</h1>";
+            foreach ($resultObject as $student) {
+                echo "<h3>{$student->student_summary->username}</h3>";
+
+                echo "<h4>Behaalde badges</h4>";
+
+                var_dump($student->badge_counts);
+
+                $badgeCount = 0;
+                for ($i=0; $i <=5 ; $i++) { 
+                    $badgeCount += $student->badge_counts->$i;
+                }
+
+                echo "Badge count:";
+                var_dump($badgeCount);
+
+                $students[$student->student_summary->nickname] = $badgeCount;
+                //$students[$student->student_summary->username] = $student->student_summary->nickname;
+            }
+            arsort($students);
+            var_dump($students);
 ?>
     Make a GET request:
     <form>

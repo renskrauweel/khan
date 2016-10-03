@@ -40,11 +40,15 @@ setcookie("token_secret", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token_secret"],ti
 var_dump($_COOKIE);
 $_SESSION["oauth_5xLdMmpejfNeYvbw"] = $_COOKIE;
 */
-$_SESSION = unserialize($_COOKIE["Session_cookie"]);
-var_dump($_SESSION);
-setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
-var_dump($_COOKIE["Session_cookie"]);
-var_dump(unserialize($_COOKIE["Session_cookie"]));
+
+if(isset($_COOKIE["Session_cookie"]))
+{
+    $_SESSION = unserialize($_COOKIE["Session_cookie"]);
+    setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
+}
+//var_dump($_SESSION);
+//var_dump($_COOKIE["Session_cookie"]);
+//var_dump(unserialize($_COOKIE["Session_cookie"]));
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
 include_once 'config.php';
@@ -79,7 +83,6 @@ if (!empty($_GET['login'])) {
      * back), then redirect the user to the resulting URL.
      */
     $requestTokenParams = array('oauth_callback' => $loginCallback);
-    die(var_dump($requestTokenParams));
     $userId = 0;
     $server = $store->getServer($consumerKey, $userId);
 
@@ -109,11 +112,12 @@ if (!empty($_GET['login'])) {
     OAuthRequester::requestAccessToken($consumerKey, $oauthToken, 0, 'POST', $accessTokenParams);
     header('Location: ka_client.php?logged_in=1');
 
-} elseif (!empty($_GET['logged_in'])) {
+} elseif (!empty($_GET['logged_in']) || isset($_COOKIE["Session_cookie"]) ) {
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
      */
+    setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
     $defaultQuery = !empty($_GET['query']);
      if ($defaultQuery == 1)
     {
