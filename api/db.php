@@ -17,7 +17,7 @@
 			return(self::$objDB);
 		}
 
-		private function __construct() {
+		public function __construct() {
 			parent::__construct(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_DATABASE);
 			if ($this->connect_errno) {
 				 throw new Exception('MySQLi connection failed: ' . $this->connect_error);

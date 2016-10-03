@@ -4,20 +4,20 @@
 
 	define('DB_HOST', 'localhost');
 	define('DB_LOGIN', 'root');
-	define('DB_PASSWORD', '');
+	define('DB_PASSWORD', 'root');
 	define('DB_DATABASE', 'leaderboard');
 
 
 	class DB extends mysqli {
 
-		private static $objDB = NULL;
+		public static $objDB = NULL;
 
 		public static function get() {
 			if (empty(self::$objDB)) self::$objDB = new self();
 			return(self::$objDB);
 		}
 
-		private function __construct() {
+		public function __construct() {
 			parent::__construct(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_DATABASE);
 			if ($this->connect_errno) {
 				 throw new Exception('MySQLi connection failed: ' . $this->connect_error);
