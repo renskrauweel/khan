@@ -58,7 +58,7 @@ if(Leaderboard::getSession() != "")
     //var_dump($_COOKIE["Session_cookie"]);
     var_dump(Leaderboard::getSession());
     if (Leaderboard::getSession() == "") {
-        $session_json =  $_COOKIE["Session_cookie"];
+        $session_json =  $_SESSION;
         Leaderboard::setSession($session_json);
         $_SESSION = unserialize(Leaderboard::getSession());
         //var_dump(Leaderboard::getSession());
@@ -140,6 +140,12 @@ if (!empty($_GET['login'])) {
     header('Location: ka_client.php?logged_in=1');
 
 } elseif (!empty($_GET['logged_in']) || Leaderboard::getSession() != "" ) {
+        if (Leaderboard::getSession() == "") {
+            $session_json =  serialize($_SESSION);
+            Leaderboard::setSession($session_json);
+            $_SESSION = unserialize(Leaderboard::getSession());
+        }
+
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
