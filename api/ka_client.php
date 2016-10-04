@@ -18,6 +18,12 @@
 </html>
 <?php
 session_start();
+include_once 'oauth-php/library/OAuthStore.php';
+include_once 'oauth-php/library/OAuthRequester.php';
+include_once 'config.php';
+include_once 'db.php';
+include_once '../app/classes/leaderboard.class.php';
+
 /*
  * Khan Academy API sample PHP client.
  *
@@ -41,19 +47,40 @@ var_dump($_COOKIE);
 $_SESSION["oauth_5xLdMmpejfNeYvbw"] = $_COOKIE;
 */
 
-if(isset($_COOKIE["Session_cookie"]))
+if(Leaderboard::getSession() != "")
 {
-    $_SESSION = unserialize($_COOKIE["Session_cookie"]);
-    setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
+    //$_SESSION = unserialize("a%3A1%3A%7Bs%3A22%3A%22oauth_5xLdMmpejfNeYvbw%22%3Ba%3A10%3A%7Bs%3A12%3A%22consumer_key%22%3Bs%3A16%3A%225xLdMmpejfNeYvbw%22%3Bs%3A15%3A%22consumer_secret%22%3Bs%3A16%3A%22r5czsqpG5cUsXW9K%22%3Bs%3A17%3A%22signature_methods%22%3Ba%3A1%3A%7Bi%3A0%3Bs%3A9%3A%22HMAC-SHA1%22%3B%7Ds%3A10%3A%22server_uri%22%3Bs%3A27%3A%22https%3A%2F%2Fwww.khanacademy.org%22%3Bs%3A17%3A%22request_token_uri%22%3Bs%3A50%3A%22https%3A%2F%2Fwww.khanacademy.org%2Fapi%2Fauth%2Frequest_token%22%3Bs%3A13%3A%22authorize_uri%22%3Bs%3A46%3A%22https%3A%2F%2Fwww.khanacademy.org%2Fapi%2Fauth%2Fauthorize%22%3Bs%3A16%3A%22access_token_uri%22%3Bs%3A49%3A%22https%3A%2F%2Fwww.khanacademy.org%2Fapi%2Fauth%2Faccess_token%22%3Bs%3A10%3A%22token_type%22%3Bs%3A6%3A%22access%22%3Bs%3A5%3A%22token%22%3Bs%3A17%3A%22t6747367726252032%22%3Bs%3A12%3A%22token_secret%22%3Bs%3A16%3A%22pYpMtmGFyEBw4WGU%22%3B%7D%7D");
+    //$_SESSION = unserialize($_COOKIE["Session_cookie"]);
+    //setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
+    //$session_json = json_encode($_COOKIE["Session_cookie"]);
+    
+    //var_dump($session_json);
+    //var_dump($_COOKIE["Session_cookie"]);
+    var_dump(Leaderboard::getSession());
+    if (Leaderboard::getSession() == "") {
+        $session_json =  $_COOKIE["Session_cookie"];
+        Leaderboard::setSession($session_json);
+        $_SESSION = unserialize(Leaderboard::getSession());
+        //var_dump(Leaderboard::getSession());
+
+    }else
+    {
+        $_SESSION = unserialize(Leaderboard::getSession());
+        //$_SESSION = unserialize(Leaderboard::getSession());
+        //var_dump($_SESSION);
+    }
+    
+
+  
+    //$_SESSION = unserialize(json_decode($session_json));
 }
 //var_dump($_SESSION);
+
 //var_dump($_COOKIE["Session_cookie"]);
+//echo $_COOKIE["Session_cookie"];
+//echo "<br/>";
+//echo strlen($_COOKIE["Session_cookie"]);
 //var_dump(unserialize($_COOKIE["Session_cookie"]));
-include_once 'oauth-php/library/OAuthStore.php';
-include_once 'oauth-php/library/OAuthRequester.php';
-include_once 'config.php';
-include_once 'db.php';
-include_once '../app/classes/leaderboard.class.php';
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
@@ -112,12 +139,12 @@ if (!empty($_GET['login'])) {
     OAuthRequester::requestAccessToken($consumerKey, $oauthToken, 0, 'POST', $accessTokenParams);
     header('Location: ka_client.php?logged_in=1');
 
-} elseif (!empty($_GET['logged_in']) || isset($_COOKIE["Session_cookie"]) ) {
+} elseif (!empty($_GET['logged_in']) || Leaderboard::getSession() != "" ) {
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
      */
-    setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
+    //setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
     $defaultQuery = !empty($_GET['query']);
      if ($defaultQuery == 1)
     {
