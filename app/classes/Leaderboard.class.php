@@ -18,7 +18,7 @@
 EOT
 			);
 			while ($rowToday=$resultToday->fetch_assoc()){
-				$data['today'][] = $rowToday;
+				$data['today'] = $rowToday;
 			}
 			
 			//Yesterday
@@ -27,7 +27,7 @@ EOT
 EOT
 			);
 			while ($rowYesterday=$resultYesterday->fetch_assoc()){
-				$data['yesterday'][]= $rowYesterday;
+				$data['yesterday'] = $rowYesterday;
 			}
 
 			// $data = [
