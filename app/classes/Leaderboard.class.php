@@ -17,21 +17,25 @@
 			SELECT * FROM leaderboard WHERE date LIKE "%{$today}%"
 EOT
 			);
-			$rowToday=$resultToday->fetch_assoc();
-
+			while ($rowToday=$resultToday->fetch_assoc()){
+				$data['today'][] = $rowToday;
+			}
+			
 			//Yesterday
 			$resultYesterday=$mysqli->query(<<<EOT
 			SELECT * FROM leaderboard WHERE date LIKE "%{$yesterday}%"
 EOT
 			);
-			$rowYesterday=$resultYesterday->fetch_assoc();
-			
-			$data = [
-				"today" => $rowToday,
-				"yesterday" => $rowYesterday
-			];
+			while ($rowYesterday=$resultYesterday->fetch_assoc()){
+				$data['yesterday'][]= $rowYesterday;
+			}
 
-			return $data;
+			// $data = [
+			// 	"today" => $rowToday,
+			// 	"yesterday" => $rowYesterday
+			// ];
+
+			return ($data);
 		}
 
 		public static function getStudentsAlltime($resultObject)

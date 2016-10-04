@@ -21,6 +21,7 @@
 <?php 
 	require_once("autoload.php");
   $data = Leaderboard::getData();
+  var_dump($data);
   $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
  ?>
 	<div class="logo">
@@ -28,9 +29,14 @@
 	</div>
  		<div id="slides">
 			<div class="slides-container">
-				 <div class="single-slide">
-     			 <?php echo <<<EOT
 
+     			<?php 
+     			
+     			foreach ($data as $row => $rows) {
+var_dump($data);
+     			echo <<<EOT
+					
+				<div class="single-slide">
      				<div class="content">
 
      				
@@ -55,10 +61,13 @@
 								<li class="bronze"><span>{$data['today']['third']}</span></li>
 							</ol>
 						</div>	
-					</div>		
+					</div>	
+				</div>
 EOT;
+}
+
  				?>
- 			</div>
+ 			
 		</div>
 	</div>
 </body>
