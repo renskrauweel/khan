@@ -198,11 +198,9 @@ if (!empty($_GET['login'])) {
 
             $file = fopen("../app/klassen.csv","r");
             $classes = Leaderboard::sortByClass($file);
-            var_dump($classes);
+
             foreach ($classes as $class => $studentMails) {
-                var_dump($class);
                 foreach ($studentMails as $studentMail) {
-                    var_dump($studentMail);
                     foreach ($resultObject as $student) {
                         if ($student->student_summary->email == $studentMail) {
                             $badgeCount = 0;
@@ -210,18 +208,62 @@ if (!empty($_GET['login'])) {
                                 $badgeCount += $student->badge_counts->$i;
                             }
                             //add to array
-                            var_dump($student->student_summary);
                             $studentsByClass[$class][$student->student_summary->nickname] = $badgeCount;
+                            //$studentsByClass[$class] = $student->student_summary->nickname;
+                            //$studentsByClass[$class][$student->student_summary->nickname] = $badgeCount;
                         }
                     }
                 }
             }
+            //$studentsByClass['I4O1A']['Rens Krauweel'] = 100;
+            //Sorting the classes
             var_dump($studentsByClass);
-
-            /*
-            foreach ($resultObject as $student) {
-                var_dump($student->student_summary->email);
-            }*/
+            foreach ($studentsByClass as $class => $students) {
+                arsort($students);
+                $description = $class;
+                //var_dump($description);
+                //var_dump($students);
+                $counter = 1;
+                $first = "";
+                $second = "";
+                $third = "";
+                foreach ($students as $student => $badgeCount) {
+                    //var_dump($student);
+                    switch ($counter) {
+                        case 1:
+                            if (!empty($student)) {
+                                $first = $student;
+                            }
+                            break;
+                        case 2:
+                            if (!empty($student)) {
+                                $second = $student;
+                            }
+                            break;
+                        case 3:
+                            if (!empty($student)) {
+                                $third = $student;
+                            }
+                            break;
+                        
+                        default:
+                            # code...
+                            break;
+                    }
+                    $counter++;
+                }
+                    echo "<b>Description: {$description}</b><br>";
+                    echo "First: {$first}<br>";
+                    echo "Second: {$second}<br>";
+                    echo "Third: {$third}<br>";
+                    //Query
+                    $mysqli=DB::get();
+                    $result=$mysqli->query(<<<EOT
+                    INSERT INTO leaderboard (course, description, first, second, third)
+                    VALUES ("Rekenen", "{$description}", "{$first}", "{$second}", "{$third}")
+EOT
+                    );
+            }
 ?>
     Make a GET request:
     <form>
