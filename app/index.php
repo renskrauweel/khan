@@ -20,7 +20,7 @@
 <body>
 <?php 
 	require_once("autoload.php");
-  $data = Leaderboard::getData();
+  $data[] = Leaderboard::getData();
   var_dump($data);
   $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
  ?>
