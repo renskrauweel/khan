@@ -11,14 +11,17 @@
 			$yesterday = date("o-m-d", strtotime("-1 days"));
 			
 			$mysqli=DB::get();
-
+			$yx = 0;
+			$tx = 0;
 			//Today
 			$resultToday=$mysqli->query(<<<EOT
 			SELECT * FROM leaderboard WHERE date LIKE "%{$today}%"
 EOT
 			);
 			while ($rowToday=$resultToday->fetch_assoc()){
-				$data['today'] = $rowToday;
+				$data['today'][$tx] = $rowToday;
+				$tx++;
+
 			}
 			
 			//Yesterday
@@ -27,7 +30,8 @@ EOT
 EOT
 			);
 			while ($rowYesterday=$resultYesterday->fetch_assoc()){
-				$data['yesterday'] = $rowYesterday;
+				$data['yesterday'][$yx] = $rowYesterday;
+				$yx++;
 			}
 
 			// $data = [

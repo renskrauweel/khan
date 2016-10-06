@@ -21,7 +21,7 @@
 <?php 
 	require_once("autoload.php");
   $data = Leaderboard::getData();
-  var_dump($data);
+  //var_dump($data);
   $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
  ?>
 	<div class="logo">
@@ -31,39 +31,48 @@
 			<div class="slides-container">
 
      			<?php 
-     			
+     			$i =0;
      			foreach ($data as $row => $rows) {
-var_dump($data);
-     			echo <<<EOT
+				foreach ($rows as $rdata) {
+					if($i <= count($data['yesterday'])-1 && $i <= count($data['today'])-1)
+					{
+					echo <<<EOT
 					
 				<div class="single-slide">
      				<div class="content">
 
-     				
+     					<div class="class-mid">
+	     				 	<h2>{$data['today'][$i]['course']}</h2>
+	     				 </div>
      			 		<div class="class-mid">
-	     				 	<h2>{$data['today']['description']}</h2>
+	     				 	<h2>{$data['today'][$i]['description']}</h2>
 	     				 </div>
 
 	   					<div class="class-left">
 						<h2>GISTEREN</h2>
 							<ol>
-								<li class="gold"><span>{$data['yesterday']['first']}</span></li>
-								<li class="silver"><span>{$data['yesterday']['second']}</span></li>
-								<li class="bronze"><span>{$data['yesterday']['third']}</span></li>
+								<li class="gold"><span>{$data['yesterday'][$i]['first']}</span></li>
+								<li class="silver"><span>{$data['yesterday'][$i]['second']}</span></li>
+								<li class="bronze"><span>{$data['yesterday'][$i]['third']}</span></li>
 							</ol>
 						</div>
 
 						<div class="class-right">
 						<h2>VANDAAG</h2>
 							<ol>
-								<li class="gold"><span>{$data['today']['first']}</span></li>
-								<li class="silver"><span>{$data['today']['second']}</span></li>
-								<li class="bronze"><span>{$data['today']['third']}</span></li>
+								<li class="gold"><span>{$data['today'][$i]['first']}</span></li>
+								<li class="silver"><span>{$data['today'][$i]['second']}</span></li>
+								<li class="bronze"><span>{$data['today'][$i]['third']}</span></li>
 							</ol>
 						</div>	
 					</div>	
 				</div>
 EOT;
+$i++;
+					}
+
+				}
+     			
 }
 
  				?>
