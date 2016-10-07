@@ -56,6 +56,25 @@
 						$data['today'][$i]['description'] = $data['yesterday'][$i]['description'];
 						$data['today'][$i]['course'] = $data['yesterday'][$i]['course'];
 					}
+          if (empty($data['today'][$i]['first'])) {
+            $data['today'][$i]['first'] = "-";
+          }
+          if (empty($data['today'][$i]['second'])) {
+            $data['today'][$i]['second'] = "-";
+          }
+          if (empty($data['today'][$i]['third'])) {
+            $data['today'][$i]['third'] = "-";
+          }
+          if (empty($data['yesterday'][$i]['first'])) {
+            $data['yesterday'][$i]['first'] = "-";
+          }
+          if (empty($data['yesterday'][$i]['second'])) {
+            $data['yesterday'][$i]['second'] = "-";
+          }
+          if (empty($data['yesterday'][$i]['third'])) {
+            $data['yesterday'][$i]['third'] = "-";
+          }
+
 					//var_dump($i);
 					echo <<<EOT
 					
