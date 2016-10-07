@@ -22,7 +22,7 @@ session_start();
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
 include_once 'config.php';
-include_once 'db.php';
+include_once '../app/db.php';
 include_once '../app/classes/leaderboard.class.php';
 
 /*
