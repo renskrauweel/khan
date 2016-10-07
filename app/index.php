@@ -62,11 +62,8 @@
 				<div class="single-slide">
      				<div class="content">
 
-     					<div class="class-mid">
-	     				 	<h2>{$data['today'][$i]['course']}</h2>
-	     				 </div>
      			 		<div class="class-mid">
-	     				 	<h2>{$data['today'][$i]['description']}</h2>
+	     				 	<h2>{$data['today'][$i]['course']} - {$data['today'][$i]['description']}</h2>
 	     				 </div>
 
 	   					<div class="class-left">
