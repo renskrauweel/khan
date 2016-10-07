@@ -69,7 +69,7 @@ EOT
 
 	        $result=$mysqli->query(<<<EOT
 	        INSERT INTO leaderboard (course, description, first, second, third)
-	        VALUES ("engels", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
+	        VALUES ("Engels", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
 EOT
 	        );
 		}
