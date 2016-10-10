@@ -36,7 +36,7 @@ include_once '../app/classes/leaderboard.class.php';
 
 if(Leaderboard::getSession() != "")
 {
-    var_dump(Leaderboard::getSession());
+    //var_dump(Leaderboard::getSession());
     if (Leaderboard::getSession() == "") {
         $session_json =  $_SESSION;
         Leaderboard::setSession($session_json);
@@ -130,17 +130,23 @@ if (!empty($_GET['login'])) {
         $result = $request->doRequest(0);
         $resultObject = json_decode($result['body']);
         $students = leaderboard::getStudentsAlltime($resultObject);
-        Leaderboard::insertStudents($students);
 
+        if (!key_exists("update_all_time",$_COOKIE)) {
+            Leaderboard::insertStudents($students);
+            setcookie("update_all_time", "false", time() + 3600 * 24);
+        }
+        
         //students all time
+        if (!key_exists("update_classes",$_COOKIE)) {
+            setcookie("update_classes", "false", time() + 3600 * 24);
             $students = [];
-            echo "<h1>Alle studenten</h1>";
+         //   echo "<h1>Alle studenten</h1>";
             foreach ($resultObject as $student) {
-                echo "<h3>{$student->student_summary->username}</h3>";
+           //     echo "<h3>{$student->student_summary->username}</h3>";
 
-                echo "<h4>Behaalde badges</h4>";
+             //   echo "<h4>Behaalde badges</h4>";
 
-                var_dump($student->badge_counts);
+                //var_dump($student->badge_counts);
 
                 $badgeCount = 0;
                 for ($i=0; $i <=5 ; $i++) { 
@@ -171,7 +177,7 @@ if (!empty($_GET['login'])) {
                 }
             }
             //Sorting the classes
-            var_dump($studentsByClass);
+            //var_dump($studentsByClass);
             foreach ($studentsByClass as $class => $students) {
                 arsort($students);
                 $description = $class;
@@ -202,10 +208,12 @@ if (!empty($_GET['login'])) {
                     }
                     $counter++;
                 }
+                /*
                     echo "<b>Description: {$description}</b><br>";
                     echo "First: {$first}<br>";
                     echo "Second: {$second}<br>";
                     echo "Third: {$third}<br>";
+                    */
                     //Query
                     $mysqli=DB::get();
                     $result=$mysqli->query(<<<EOT
@@ -214,20 +222,12 @@ if (!empty($_GET['login'])) {
 EOT
                     );
             }
-?>
-    Make a GET request:
-    <form>
-        <input type="hidden" name="logged_in" value=1>
-        <input type="text" name="query" value="<?php echo $defaultQuery; ?>" size=40><br>
-        <input type="submit" id= "sknop" value="Submit">
-    </form>
-<?php
-
+        }    
     if (!empty($_GET['query'])) {
         $request = new OAuthRequester($baseUrl.$_GET['query'], 'GET');
         $result = $request->doRequest(0);
         $resultObject = json_decode($result['body']);
-        var_dump($resultObject);
+        //var_dump($resultObject);
     }
 } else {
     /*
