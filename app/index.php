@@ -32,48 +32,13 @@
 
      			<?php 
      			
-     			//foreach ($data as $row => $rows) {
-//var_dump(count($data['yesterday']));
-     				//var_dump($rows);
-//var_dump(count($data['yesterday']));
-//var_dump(count($data['today']));
      			if (count($data['yesterday']) <= count($data['today'])) {
      				$length = count($data['today']);
      			}else{
      				$length = count($data['yesterday']);
      			}
+     			$data = Leaderboard::repairLeaderboardArray($data);
 				for($i =0; $i<= $length -1; $i++) {
-					if($i >= count($data['yesterday']) )
-					{
-						$data['yesterday'][$i]['first'] = "";
-						$data['yesterday'][$i]['second'] = "";
-						$data['yesterday'][$i]['third'] = "";
-					}
-					if ($i >= count($data['today'])) {
-						$data['today'][$i]['first'] = "";
-						$data['today'][$i]['second'] = "";
-						$data['today'][$i]['third'] = "";
-						$data['today'][$i]['description'] = $data['yesterday'][$i]['description'];
-						$data['today'][$i]['course'] = $data['yesterday'][$i]['course'];
-					}
-          if (empty($data['today'][$i]['first'])) {
-            $data['today'][$i]['first'] = "-";
-          }
-          if (empty($data['today'][$i]['second'])) {
-            $data['today'][$i]['second'] = "-";
-          }
-          if (empty($data['today'][$i]['third'])) {
-            $data['today'][$i]['third'] = "-";
-          }
-          if (empty($data['yesterday'][$i]['first'])) {
-            $data['yesterday'][$i]['first'] = "-";
-          }
-          if (empty($data['yesterday'][$i]['second'])) {
-            $data['yesterday'][$i]['second'] = "-";
-          }
-          if (empty($data['yesterday'][$i]['third'])) {
-            $data['yesterday'][$i]['third'] = "-";
-          }
 
 					//var_dump($i);
 					echo <<<EOT

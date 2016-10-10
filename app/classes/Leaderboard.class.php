@@ -34,11 +34,6 @@ EOT
 				$yx++;
 			}
 
-			// $data = [
-			// 	"today" => $rowToday,
-			// 	"yesterday" => $rowYesterday
-			// ];
-
 			return ($data);
 		}
 
@@ -134,6 +129,50 @@ EOT
 	        VALUES ("{$session_json}")
 EOT
 	        );
+		}
+
+		public static function repairLeaderboardArray($data)
+		{
+			if (count($data['yesterday']) <= count($data['today'])) {
+ 				$length = count($data['today']);
+ 			}else{
+ 				$length = count($data['yesterday']);
+ 			}
+			for($i =0; $i<= $length -1; $i++) {
+				if($i >= count($data['yesterday']) )
+				{
+					$data['yesterday'][$i]['first'] = "";
+					$data['yesterday'][$i]['second'] = "";
+					$data['yesterday'][$i]['third'] = "";
+				}
+				if ($i >= count($data['today'])) {
+					$data['today'][$i]['first'] = "";
+					$data['today'][$i]['second'] = "";
+					$data['today'][$i]['third'] = "";
+					$data['today'][$i]['description'] = $data['yesterday'][$i]['description'];
+					$data['today'][$i]['course'] = $data['yesterday'][$i]['course'];
+				}
+		          if (empty($data['today'][$i]['first'])) {
+		            $data['today'][$i]['first'] = "-";
+		          }
+		          if (empty($data['today'][$i]['second'])) {
+		            $data['today'][$i]['second'] = "-";
+		          }
+		          if (empty($data['today'][$i]['third'])) {
+		            $data['today'][$i]['third'] = "-";
+		          }
+		          if (empty($data['yesterday'][$i]['first'])) {
+		            $data['yesterday'][$i]['first'] = "-";
+		          }
+		          if (empty($data['yesterday'][$i]['second'])) {
+		            $data['yesterday'][$i]['second'] = "-";
+		          }
+		          if (empty($data['yesterday'][$i]['third'])) {
+		            $data['yesterday'][$i]['third'] = "-";
+		          }
+			}
+
+			return $data;
 		}
 	}
 
