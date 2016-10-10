@@ -56,17 +56,33 @@
 						$data['today'][$i]['description'] = $data['yesterday'][$i]['description'];
 						$data['today'][$i]['course'] = $data['yesterday'][$i]['course'];
 					}
+          if (empty($data['today'][$i]['first'])) {
+            $data['today'][$i]['first'] = "-";
+          }
+          if (empty($data['today'][$i]['second'])) {
+            $data['today'][$i]['second'] = "-";
+          }
+          if (empty($data['today'][$i]['third'])) {
+            $data['today'][$i]['third'] = "-";
+          }
+          if (empty($data['yesterday'][$i]['first'])) {
+            $data['yesterday'][$i]['first'] = "-";
+          }
+          if (empty($data['yesterday'][$i]['second'])) {
+            $data['yesterday'][$i]['second'] = "-";
+          }
+          if (empty($data['yesterday'][$i]['third'])) {
+            $data['yesterday'][$i]['third'] = "-";
+          }
+
 					//var_dump($i);
 					echo <<<EOT
 					
 				<div class="single-slide">
      				<div class="content">
 
-     					<div class="class-mid">
-	     				 	<h2>{$data['today'][$i]['course']}</h2>
-	     				 </div>
      			 		<div class="class-mid">
-	     				 	<h2>{$data['today'][$i]['description']}</h2>
+	     				 	<h2>{$data['today'][$i]['course']} - {$data['today'][$i]['description']}</h2>
 	     				 </div>
 
 	   					<div class="class-left">
