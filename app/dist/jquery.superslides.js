@@ -2,12 +2,11 @@
 * https://github.com/nicinabox/superslides
 * Copyright (c) 2013 Nic Aitch; Licensed MIT */
 (function(window, $) {
-
 var Superslides, plugin = 'superslides';
 
 Superslides = function(el, options) {
   this.options = $.extend({
-    play: false,
+    play: 7000,
     animation_speed: 600,
     animation_easing: 'swing',
     animation: 'slide',
