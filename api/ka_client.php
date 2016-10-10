@@ -32,31 +32,10 @@ include_once '../app/classes/leaderboard.class.php';
  * the individual steps.
  */
 
-/*
-var_dump($_SESSION["oauth_5xLdMmpejfNeYvbw"]);
 
-setcookie("consumer_key", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["consumer_key"],time() + 9999999999999999);
-setcookie("consumer_secret", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["consumer_secret"],time() + 9999999999999999);
-setcookie("server_uri", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["server_uri"],time() + 9999999999999999);
-setcookie("request_token_uri", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["request_token_uri"],time() + 9999999999999999);
-setcookie("access_token_uri", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["access_token_uri"],time() + 9999999999999999);
-setcookie("token_type", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token_type"],time() + 9999999999999999);
-setcookie("token", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token"],time() + 9999999999999999);
-setcookie("token_secret", $_SESSION["oauth_5xLdMmpejfNeYvbw"]["token_secret"],time() + 9999999999999999);
-
-var_dump($_COOKIE);
-$_SESSION["oauth_5xLdMmpejfNeYvbw"] = $_COOKIE;
-*/
 
 if(Leaderboard::getSession() != "")
 {
-    //$_SESSION = unserialize("a%3A1%3A%7Bs%3A22%3A%22oauth_5xLdMmpejfNeYvbw%22%3Ba%3A10%3A%7Bs%3A12%3A%22consumer_key%22%3Bs%3A16%3A%225xLdMmpejfNeYvbw%22%3Bs%3A15%3A%22consumer_secret%22%3Bs%3A16%3A%22r5czsqpG5cUsXW9K%22%3Bs%3A17%3A%22signature_methods%22%3Ba%3A1%3A%7Bi%3A0%3Bs%3A9%3A%22HMAC-SHA1%22%3B%7Ds%3A10%3A%22server_uri%22%3Bs%3A27%3A%22https%3A%2F%2Fwww.khanacademy.org%22%3Bs%3A17%3A%22request_token_uri%22%3Bs%3A50%3A%22https%3A%2F%2Fwww.khanacademy.org%2Fapi%2Fauth%2Frequest_token%22%3Bs%3A13%3A%22authorize_uri%22%3Bs%3A46%3A%22https%3A%2F%2Fwww.khanacademy.org%2Fapi%2Fauth%2Fauthorize%22%3Bs%3A16%3A%22access_token_uri%22%3Bs%3A49%3A%22https%3A%2F%2Fwww.khanacademy.org%2Fapi%2Fauth%2Faccess_token%22%3Bs%3A10%3A%22token_type%22%3Bs%3A6%3A%22access%22%3Bs%3A5%3A%22token%22%3Bs%3A17%3A%22t6747367726252032%22%3Bs%3A12%3A%22token_secret%22%3Bs%3A16%3A%22pYpMtmGFyEBw4WGU%22%3B%7D%7D");
-    //$_SESSION = unserialize($_COOKIE["Session_cookie"]);
-    //setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
-    //$session_json = json_encode($_COOKIE["Session_cookie"]);
-    
-    //var_dump($session_json);
-    //var_dump($_COOKIE["Session_cookie"]);
     var_dump(Leaderboard::getSession());
     if (Leaderboard::getSession() == "") {
         $session_json =  $_SESSION;
@@ -67,21 +46,9 @@ if(Leaderboard::getSession() != "")
     }else
     {
         $_SESSION = unserialize(Leaderboard::getSession());
-        //$_SESSION = unserialize(Leaderboard::getSession());
-        //var_dump($_SESSION);
     }
-    
 
-  
-    //$_SESSION = unserialize(json_decode($session_json));
 }
-//var_dump($_SESSION);
-
-//var_dump($_COOKIE["Session_cookie"]);
-//echo $_COOKIE["Session_cookie"];
-//echo "<br/>";
-//echo strlen($_COOKIE["Session_cookie"]);
-//var_dump(unserialize($_COOKIE["Session_cookie"]));
 
 $baseUrl = 'https://www.khanacademy.org';
 $requestTokenUrl = $baseUrl.'/api/auth/request_token';
@@ -151,7 +118,6 @@ if (!empty($_GET['login'])) {
      * Main logged-in page. Display a form for typing in a query, and execute a
      * query and display its results if one was specified.
      */
-    //setcookie("Session_cookie", serialize($_SESSION), time()+360000000);
     $defaultQuery = !empty($_GET['query']);
      if ($defaultQuery == 1)
     {
@@ -162,38 +128,28 @@ if (!empty($_GET['login'])) {
     }
         $request = new OAuthRequester($baseUrl.$defaultQuery, 'GET');
         $result = $request->doRequest(0);
-        //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';
         $resultObject = json_decode($result['body']);
-        //var_dump($resultObject);
-
         $students = leaderboard::getStudentsAlltime($resultObject);
         Leaderboard::insertStudents($students);
 
         //students all time
             $students = [];
-        //    echo "<h1>Alle studenten</h1>";
+            echo "<h1>Alle studenten</h1>";
             foreach ($resultObject as $student) {
-                //echo "<h3>{$student->student_summary->username}</h3>";
+                echo "<h3>{$student->student_summary->username}</h3>";
 
-    //            echo "<h4>Behaalde badges</h4>";
+                echo "<h4>Behaalde badges</h4>";
 
-  //              var_dump($student->badge_counts);
+                var_dump($student->badge_counts);
 
                 $badgeCount = 0;
                 for ($i=0; $i <=5 ; $i++) { 
                     $badgeCount += $student->badge_counts->$i;
                 }
-/*
-                echo "Badge count:";
-                var_dump($badgeCount);
-*/
-                $students[$student->student_summary->nickname] = $badgeCount;
-                //$students[$student->student_summary->username] = $student->student_summary->nickname;
-            }
-            arsort($students);
-            //var_dump($students);
 
-            
+                $students[$student->student_summary->nickname] = $badgeCount;
+            }
+            arsort($students);        
             //Students by class
             $studentsByClass = [];
 
@@ -210,26 +166,20 @@ if (!empty($_GET['login'])) {
                             }
                             //add to array
                             $studentsByClass[$class][$student->student_summary->nickname] = $badgeCount;
-                            //$studentsByClass[$class] = $student->student_summary->nickname;
-                            //$studentsByClass[$class][$student->student_summary->nickname] = $badgeCount;
                         }
                     }
                 }
             }
-            //$studentsByClass['I4O1A']['Rens Krauweel'] = 100;
             //Sorting the classes
             var_dump($studentsByClass);
             foreach ($studentsByClass as $class => $students) {
                 arsort($students);
                 $description = $class;
-                //var_dump($description);
-                //var_dump($students);
                 $counter = 1;
                 $first = "";
                 $second = "";
                 $third = "";
                 foreach ($students as $student => $badgeCount) {
-                    //var_dump($student);
                     switch ($counter) {
                         case 1:
                             if (!empty($student)) {
@@ -248,7 +198,6 @@ if (!empty($_GET['login'])) {
                             break;
                         
                         default:
-                            # code...
                             break;
                     }
                     $counter++;
@@ -277,7 +226,6 @@ EOT
     if (!empty($_GET['query'])) {
         $request = new OAuthRequester($baseUrl.$_GET['query'], 'GET');
         $result = $request->doRequest(0);
-        //echo 'Response: <br><code>'. var_dump(json_decode($result['body'])).'</code>';
         $resultObject = json_decode($result['body']);
         var_dump($resultObject);
     }
