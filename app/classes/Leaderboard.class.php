@@ -64,7 +64,7 @@ EOT
 
 	        $result=$mysqli->query(<<<EOT
 	        INSERT INTO leaderboard (course, description, first, second, third)
-	        VALUES ("Engels", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
+	        VALUES ("Rekenen", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
 EOT
 	        );
 		}
@@ -120,7 +120,7 @@ EOT
 		}
 		public static function setSession($session_json)
 		{
-			$link = mysqli_connect("localhost", "root", "", "leaderboard");
+			$link = mysqli_connect("localhost", "root", "usbw", "leaderboard");
 			$mysqli=DB::get();
 			$session_json = str_replace("//","dit teken kan er niet in", $session_json);
 	        $session_json = mysqli_real_escape_string ($link, $session_json );
