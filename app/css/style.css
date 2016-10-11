@@ -98,4 +98,14 @@ div.class-right h2 {
 	margin-bottom: 5px;
 	z-index: 999;
 }
+div.khan-bar {
+	width: 100%;
+	padding: 15px;
+	background-color: gray;
+}
+div.khan-logo img {
+	margin: 0 auto;
+	width: calc(50% - 640px);
+}
+
 

@@ -24,9 +24,11 @@
   //var_dump($data);
   $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
  ?>
-	<div class="logo">
-		<img src="images/logo_plain.png" alt="logo">
+
+ 	<div class="khan-bar">
+		<div class="khan-logo"><img src="images/khan_top_logo.png"></div>
 	</div>
+
  		<div id="slides">
 			<div class="slides-container">
 
