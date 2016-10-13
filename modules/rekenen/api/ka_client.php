@@ -22,8 +22,8 @@ session_start();
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
 include_once 'config.php';
-include_once '../app/db.php';
-include_once '../app/classes/leaderboard.class.php';
+include_once '../../../app/db.php';
+include_once '../../../app/classes/leaderboard.class.php';
 
 /*
  * Khan Academy API sample PHP client.
@@ -142,14 +142,11 @@ if (!empty($_GET['login'])) {
             $students = [];
          //   echo "<h1>Alle studenten</h1>";
             foreach ($resultObject as $student) {
-           //     echo "<h3>{$student->student_summary->username}</h3>";
+           var_dump($student);
 
-             //   echo "<h4>Behaalde badges</h4>";
-
-                //var_dump($student->badge_counts);
-
+                //Count last 3 badgetypes
                 $badgeCount = 0;
-                for ($i=0; $i <=5 ; $i++) { 
+                for ($i=3; $i <=5 ; $i++) { 
                     $badgeCount += $student->badge_counts->$i;
                 }
 
@@ -159,7 +156,7 @@ if (!empty($_GET['login'])) {
             //Students by class
             $studentsByClass = [];
 
-            $file = fopen("../app/klassen.csv","r");
+            $file = fopen("../../../app/klassen.csv","r");
             $classes = Leaderboard::sortByClass($file);
 
             foreach ($classes as $class => $studentMails) {
