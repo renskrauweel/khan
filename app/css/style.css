@@ -1,11 +1,13 @@
 /* */
 
 body {
-    background-image: url("../images/space.jpg"); /* fallback */
-    /* animation: switchColor 15s infinite; */
-}
-body {
 	overflow: hidden;
+}
+
+div.background {
+    background-image: url("../images/space.jpg"); /* fallback */
+    background-size: cover;
+    /* animation: switchColor 15s infinite; */
 }
 /*
 @keyframes switchColor {

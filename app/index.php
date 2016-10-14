@@ -28,6 +28,7 @@
  	<div class="khan-bar">
 		<div class="khan-logo"><img src="images/khan_logo.png"></div>
 	</div>
+	<div class="background">
 
  		<div id="slides">
 			<div class="slides-container">
@@ -78,7 +79,7 @@ EOT;
      			
 
  				?>
- 			
+ 			</div>
 		</div>
 	</div>
 </body>
