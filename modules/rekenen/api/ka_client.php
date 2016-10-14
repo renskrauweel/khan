@@ -24,6 +24,8 @@ include_once 'oauth-php/library/OAuthRequester.php';
 include_once 'config.php';
 include_once '../../../app/db.php';
 include_once '../../../app/classes/leaderboard.class.php';
+include_once '../../rekenen/classes/rekenmodule.class.php';
+
 
 /*
  * Khan Academy API sample PHP client.
@@ -132,7 +134,7 @@ if (!empty($_GET['login'])) {
         $students = leaderboard::getStudentsAlltime($resultObject);
 
         if (!key_exists("update_all_time",$_COOKIE)) {
-            Leaderboard::insertStudents($students);
+            RekenModule::insertStudents($students);
             setcookie("update_all_time", "false", time() + 3600 * 24);
         }
         
