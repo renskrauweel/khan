@@ -26,7 +26,7 @@
  ?>
 
  	<div class="khan-bar">
-		<div class="khan-logo"><img src="images/khan_top_logo.png"></div>
+		<div class="khan-logo"><img src="images/khan_logo.png"></div>
 	</div>
 
  		<div id="slides">
@@ -46,22 +46,24 @@
 					echo <<<EOT
 					
 				<div class="single-slide">
-     				<div class="content">
+     				
 
      			 		<div class="class-mid">
-	     				 	<h2>{$data['today'][$i]['course']} - {$data['today'][$i]['description']}</h2>
+	     				 	
 	     				 </div>
+	     				 <div class="content">
 
 	   					<div class="class-left">
+						<h2>{$data['today'][$i]['description']}</h2>
+						</div>
+
+						<div class="class-right">
 						<h2>GISTEREN</h2>
 							<ol>
 								<li class="gold"><span>{$data['yesterday'][$i]['first']}</span></li>
 								<li class="silver"><span>{$data['yesterday'][$i]['second']}</span></li>
 								<li class="bronze"><span>{$data['yesterday'][$i]['third']}</span></li>
 							</ol>
-						</div>
-
-						<div class="class-right">
 						<h2>VANDAAG</h2>
 							<ol>
 								<li class="gold"><span>{$data['today'][$i]['first']}</span></li>

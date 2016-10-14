@@ -1,39 +1,33 @@
 /* */
 
-html {
-    background: rgb(65, 142, 175); /* fallback */
-    animation: switchColor 15s infinite;
+body {
+    background-image: url("../images/space.jpg"); /* fallback */
+    /* animation: switchColor 15s infinite; */
 }
-
+body {
+	overflow: hidden;
+}
+/*
 @keyframes switchColor {
-    33% {
-        background: rgb(41, 149, 196);
+    50% {
+        background: #9DB63B;
     }
-    66% {
-        background: rgb(20, 118, 160);
-    }
-    99% {
-        background: rgb(65, 142, 175);
+    100% {
+        background: #11ACCD;
     }
 }
-div.logo img {
-	position: absolute;
-	top: 4%;
-	left: calc(50% - 250px);
-	width: 500px;
-
-}
+*/
 div.content {
 	margin: 100px;
-	margin-top: 15%;
 }
 li {
 	height: 65px;
 	width: 100%;
 	white-space: nowrap;
-	overflow: hidden;
+	/* overflow: hidden; */
 	text-overflow: ellipsis;
 }
+/*
 li.gold{
    background: url("../images/gold.png") no-repeat top left;
    background-size: 50px auto;
@@ -50,6 +44,8 @@ li span{
 	display: block;
 	margin-left: 70px;
 }
+*/
+
 
 div.class-mid h2 {
 	margin: 0;
@@ -57,35 +53,28 @@ div.class-mid h2 {
 	text-align: center;
 	color: #fff;
 	font-family: 'PT Sans', sans-serif;
-	background: rgba(54, 25, 25, .5);
 	padding: 8px;
+	z-index: 999;
+
 }
+
 div.class-left ol,
 div.class-right ol {
 	padding: 10px;
 	font-size: 40px;
 	color: #fff;
-	list-style-type: none;
+	/* list-style-type: none; */
 	font-family: 'Raleway', sans-serif;
 }
 
-div.class-left {
-	margin: 0 auto;
-	margin-top: 20px;
-	width: 48%;
-	float: left;
-	background: rgba(54, 25, 25, .5);
-	border-radius: 5px;
-}
+
 div.class-right {
 	margin: 0 auto;
 	margin-top: 20px;
 	width: 48%;
 	float: right;
-	background: rgba(54, 25, 25, .5);
 	border-radius: 5px;
 }
-div.class-left h2,
 div.class-right h2 {
 	margin: 0;
 	font-size: 40px;
@@ -98,14 +87,26 @@ div.class-right h2 {
 	margin-bottom: 5px;
 	z-index: 999;
 }
+div.class-left h2 {
+	margin: 0 auto;
+	float:left;
+	margin-top: 300px;
+	font-size: 90px;
+	text-align: center;
+	color: #fff;
+	font-family: 'PT Sans', sans-serif;
+
+}
 div.khan-bar {
 	width: 100%;
 	padding: 15px;
-	background-color: gray;
+	background-color: #3B414F;
 }
 div.khan-logo img {
-	margin: 0 auto;
-	width: calc(50% - 640px);
+	width: 400px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
