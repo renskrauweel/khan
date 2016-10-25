@@ -5,19 +5,9 @@ body {
 }
 
 div.background {
+    background-image: url("../images/space.jpg"); /* fallback */
     background-size: cover;
-    /* animation: switchColor 15s infinite; */
 }
-/*
-@keyframes switchColor {
-    50% {
-        background: #9DB63B;
-    }
-    100% {
-        background: #11ACCD;
-    }
-}
-*/
 div.content {
 	margin: 100px;
 }
@@ -28,26 +18,9 @@ li {
 	/* overflow: hidden; */
 	text-overflow: ellipsis;
 }
-/*
-li.gold{
-   background: url("../images/gold.png") no-repeat top left;
-   background-size: 50px auto;
+div.single-slide {
+	height: 100%;
 }
-li.silver {
-   background: url("../images/silver.png") no-repeat top left;
-   background-size: 50px auto;
-}
-li.bronze {
-   background: url("../images/bronze.png") no-repeat top left;
-	background-size: 50px auto;
-}
-li span{
-	display: block;
-	margin-left: 70px;
-}
-*/
-
-
 div.class-mid h2 {
 	margin: 0;
 	font-size: 40px;
@@ -97,14 +70,13 @@ div.class-left h2 {
 }
 div.khan-bar {
 	width: 100%;
-	padding: 15px;
 	background-color: #3B414F;
-}
-div.khan-logo img {
-	width: 400px;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
+	background-image: url("../images/khan_logo.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: 400px auto;
+	background-position: center;
+	padding: 30px;
 }
 
 

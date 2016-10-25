@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="css/style.css" type="text/css" >
+	<link rel="stylesheet" href="css/rekenen.css" type="text/css" >
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans|Raleway" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="javascripts/jquery.easing.1.3.js"></script>
@@ -22,32 +22,37 @@
 	require_once("autoload.php");
   $data = Leaderboard::getData();
   //var_dump($data);
-  $classes = Leaderboard::sortByClass(fopen("klassen.csv","r"));
- ?>
 
- 	<div class="khan-bar">
-		<div class="khan-logo"><img src="images/khan_logo.png"></div>
-	</div>
-	<div class="background">
+
+ ?>
+ 
+		<div class="background">
 
  		<div id="slides">
-			<div class="slides-container">
 
-     			<?php 
+ 
+			<div class="slides-container">
+     			<?php
+
      			
      			if (count($data['yesterday']) <= count($data['today'])) {
      				$length = count($data['today']);
      			}else{
      				$length = count($data['yesterday']);
      			}
+
      			$data = Leaderboard::repairLeaderboardArray($data);
 				for($i =0; $i<= $length -1; $i++) {
 
 					//var_dump($i);
 					echo <<<EOT
+
 					
 				<div class="single-slide">
-     				
+
+	<div class="khan-bar">
+		
+	</div>
 
      			 		<div class="class-mid">
 	     				 	
@@ -55,6 +60,7 @@
 	     				 <div class="content">
 
 	   					<div class="class-left">
+
 						<h2>{$data['today'][$i]['description']}</h2>
 						</div>
 
