@@ -133,10 +133,7 @@ if (!empty($_GET['login'])) {
         $resultObject = json_decode($result['body']);
         $students = leaderboard::getStudentsAlltime($resultObject);
 
-        if (!key_exists("update_all_time",$_COOKIE)) {
-            RekenModule::insertStudents($students);
-            setcookie("update_all_time", "false", time() + 3600 * 24);
-        }
+        RekenModule::insertStudents($students);
         
         //students all time
         //if (!key_exists("update_classes",$_COOKIE)) {

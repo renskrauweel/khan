@@ -13,12 +13,28 @@
 	        }
 
 	        $mysqli=DB::get();
-
-	        $result=$mysqli->query(<<<EOT
-	        INSERT INTO leaderboard (course, description, first, second, third)
-	        VALUES ("Rekenen", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
+                        $today = date("o-m-d");
+                        $resultToday=$mysqli->query(<<<EOT
+            SELECT id FROM leaderboard WHERE description = "Alle leerlingen" AND course = "Rekenen" AND date LIKE "%{$today}%" 
 EOT
-	        );
+            );
+                        $x = -1;
+                        while ($rowToday=$resultToday->fetch_row()){
+                            $data = $rowToday[0];
+                            $x = $data;
+                        }
+                        if($x != -1){
+                            $result=$mysqli->query(<<<EOT
+                                UPDATE leaderboard SET first = "{$positions[0]}", second = "{$positions[1]}", third = "{$positions[2]}", date = NOW() WHERE id = {$data}
+EOT
+                            );
+                        }else {
+                  $result=$mysqli->query(<<<EOT
+                    INSERT INTO leaderboard (course, description, first, second, third)
+                    VALUES ("Rekenen", "Alle leerlingen", "{$positions[0]}", "{$positions[1]}", "{$positions[2]}")
+EOT
+                    );
+                        }
 		}
 
 		public static function insertStudentsByClass($studentsByClass) {
