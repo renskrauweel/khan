@@ -60,11 +60,31 @@ EOT
                 */
                 //Query
                 $mysqli=DB::get();
-                $result=$mysqli->query(<<<EOT
+                        $today = date("o-m-d");
+                        $resultToday=$mysqli->query(<<<EOT
+            SELECT id FROM leaderboard WHERE description = "{$description}" AND course = "Rekenen" AND date LIKE "%{$today}%" 
+EOT
+            );
+                        $x = -1;
+                        while ($rowToday=$resultToday->fetch_row()){
+                            $data = $rowToday[0];
+                            $x = $data;
+                        }
+                        if($x != -1){
+                            $result=$mysqli->query(<<<EOT
+                                UPDATE leaderboard SET  first = "{$first}", second = "{$second}", third = "{$third}", date = NOW() WHERE id = {$data}
+EOT
+                            );
+                        }else {
+                            $result=$mysqli->query(<<<EOT
                 INSERT INTO leaderboard (course, description, first, second, third)
                 VALUES ("Rekenen", "{$description}", "{$first}", "{$second}", "{$third}")
 EOT
                 );
+                        }
+                        
+                    
+                
             }
            
 		}

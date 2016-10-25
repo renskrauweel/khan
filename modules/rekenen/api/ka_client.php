@@ -139,12 +139,12 @@ if (!empty($_GET['login'])) {
         }
         
         //students all time
-        if (!key_exists("update_classes",$_COOKIE)) {
+        //if (!key_exists("update_classes",$_COOKIE)) {
             setcookie("update_classes", "false", time() + 3600 * 24);
             $students = [];
          //   echo "<h1>Alle studenten</h1>";
             foreach ($resultObject as $student) {
-           var_dump($student);
+           //var_dump($student);
 
                 //Count last 3 badgetypes
                 $badgeCount = 0;
@@ -166,7 +166,7 @@ if (!empty($_GET['login'])) {
                     foreach ($resultObject as $student) {
                         if ($student->student_summary->email == $studentMail) {
                             $badgeCount = 0;
-                            for ($i=0; $i <=5 ; $i++) { 
+                            for ($i=3; $i <=5 ; $i++) { 
                                 $badgeCount += $student->badge_counts->$i;
                             }
                             //add to array
@@ -175,53 +175,72 @@ if (!empty($_GET['login'])) {
                     }
                 }
             }
+            rekenmodule::insertStudentsByClass($studentsByClass);
             //Sorting the classes
             //var_dump($studentsByClass);
-            foreach ($studentsByClass as $class => $students) {
-                arsort($students);
-                $description = $class;
-                $counter = 1;
-                $first = "";
-                $second = "";
-                $third = "";
-                foreach ($students as $student => $badgeCount) {
-                    switch ($counter) {
-                        case 1:
-                            if (!empty($student)) {
-                                $first = $student;
-                            }
-                            break;
-                        case 2:
-                            if (!empty($student)) {
-                                $second = $student;
-                            }
-                            break;
-                        case 3:
-                            if (!empty($student)) {
-                                $third = $student;
-                            }
-                            break;
-                        
-                        default:
-                            break;
-                    }
-                    $counter++;
-                }
-                /*
-                    echo "<b>Description: {$description}</b><br>";
-                    echo "First: {$first}<br>";
-                    echo "Second: {$second}<br>";
-                    echo "Third: {$third}<br>";
-                    */
-                    //Query
-                    $mysqli=DB::get();
-                    $result=$mysqli->query(<<<EOT
-                    INSERT INTO leaderboard (course, description, first, second, third)
-                    VALUES ("Rekenen", "{$description}", "{$first}", "{$second}", "{$third}")
-EOT
-                    );
-            }
-        }    
+//            foreach ($studentsByClass as $class => $students) {
+//                arsort($students);
+//                $description = $class;
+//                $counter = 1;
+//                $first = "";
+//                $second = "";
+//                $third = "";
+//                foreach ($students as $student => $badgeCount) {
+//                    switch ($counter) {
+//                        case 1:
+//                            if (!empty($student)) {
+//                                $first = $student;
+//                            }
+//                            break;
+//                        case 2:
+//                            if (!empty($student)) {
+//                                $second = $student;
+//                            }
+//                            break;
+//                        case 3:
+//                            if (!empty($student)) {
+//                                $third = $student;
+//                            }
+//                            break;
+//                        
+//                        default:
+//                            break;
+//                    }
+//                    $counter++;
+//                }
+//                /*
+//                    echo "<b>Description: {$description}</b><br>";
+//                    echo "First: {$first}<br>";
+//                    echo "Second: {$second}<br>";
+//                    echo "Third: {$third}<br>";
+//                    */
+//                    //Query
+//                    $mysqli=DB::get();
+//                     if(!key_exists("update_classes",$_COOKIE))
+//                    {
+//                        $result=$mysqli->query(<<<EOT
+//                        INSERT INTO leaderboard (course, description, first, second, third)
+//                        VALUES ("Rekenen", "{$description}", "{$first}", "{$second}", "{$third}")
+//EOT
+//                    );
+//                    } else{
+//                        $today = date("o-m-d");
+//                        $resultToday=$mysqli->query(<<<EOT
+//            SELECT id FROM leaderboard WHERE description = "{$description}" AND course = "Rekenen" AND date LIKE "%{$today}%" 
+//EOT
+//            );
+//                        var_dump($resultToday);
+//                        while ($rowToday=$resultToday->fetch_row()){
+//                $data = $rowToday[0];
+//            }
+//                        var_dump($resultToday);
+//                        $result=$mysqli->query(<<<EOT
+//                        UPDATE leaderboard SET  first = "{$first}", second = "{$second}", third = "{$third}", date = NOW() WHERE id = {$data}
+//EOT
+//                    );
+//                    }
+//            }
+        //}    
     if (!empty($_GET['query'])) {
         $request = new OAuthRequester($baseUrl.$_GET['query'], 'GET');
         $result = $request->doRequest(0);
