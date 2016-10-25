@@ -45,7 +45,7 @@ EOT
 	        $students = [];
 	        foreach ($resultObject as $student) {
 	            $badgeCount = 0;
-	            for ($i=0; $i <=5 ; $i++) { 
+	            for ($i=3; $i <=5 ; $i++) { 
 	                $badgeCount += $student->badge_counts->$i;
 	            }
 	            $students[$student->student_summary->nickname] = $badgeCount;
