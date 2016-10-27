@@ -21,11 +21,10 @@ date_default_timezone_set('Europe/Amsterdam');
 session_start();
 include_once 'oauth-php/library/OAuthStore.php';
 include_once 'oauth-php/library/OAuthRequester.php';
-include_once 'config.php';
-include_once '../../../app/db.php';
-include_once '../../../app/classes/leaderboard.class.php';
-include_once '../../rekenen/classes/rekenmodule.class.php';
-
+include_once dirname(__FILE__).'/../../../modules/rekenen/api/config.php';
+include_once dirname(__FILE__).'/../../../app/db.php';
+include_once dirname(__FILE__).'/../../../app/classes/leaderboard.class.php';
+include_once dirname(__FILE__).'/../../rekenen/classes/rekenmodule.class.php';
 
 /*
  * Khan Academy API sample PHP client.
@@ -155,7 +154,7 @@ if (!empty($_GET['login'])) {
             //Students by class
             $studentsByClass = [];
 
-            $file = fopen("../../../app/klassen.csv","r");
+            $file = fopen(dirname(__FILE__)."/../../../app/klassen.csv","r");
             $classes = Leaderboard::sortByClass($file);
 
             foreach ($classes as $class => $studentMails) {

@@ -1,6 +1,6 @@
 <?php
 
-	include_once("../../module.class.php");
+	include_once(dirname(__FILE__)."/../../module.class.php");
 
 	Class RekenModule extends Module
 	{
