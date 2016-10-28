@@ -112,7 +112,7 @@ EOT
 		}
 		public static function setSession($session_json)
 		{
-			$link = mysqli_connect("localhost", "root", "usbw", "leaderboard");
+			$link = mysqli_connect(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_DATABASE);
 			$mysqli=DB::get();
 			$session_json = str_replace("//","dit teken kan er niet in", $session_json);
 	        $session_json = mysqli_real_escape_string ($link, $session_json );
