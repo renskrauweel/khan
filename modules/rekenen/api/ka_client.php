@@ -136,7 +136,7 @@ if (!empty($_GET['login'])) {
         
         //students all time
         //if (!key_exists("update_classes",$_COOKIE)) {
-            setcookie("update_classes", "false", time() + 3600 * 24);
+            //setcookie("update_classes", "false", time() + 3600 * 24);
             $students = [];
          //   echo "<h1>Alle studenten</h1>";
             foreach ($resultObject as $student) {

@@ -34,6 +34,13 @@ EOT
 				$yx++;
 			}
 
+			if (!array_key_exists("yesterday", $data) && array_key_exists("today", $data)) {
+				$data["yesterday"] = $data["today"];
+			}
+			if (array_key_exists("yesterday", $data) && !array_key_exists("today", $data)) {
+				$data["today"] = $data["yesterday"];
+			}
+
 			return ($data);
 		}
  
