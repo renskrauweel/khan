@@ -15,7 +15,7 @@
 	        $mysqli=DB::get();
                         $today = date("o-m-d");
                         $resultToday=$mysqli->query(<<<EOT
-            SELECT id FROM leaderboard WHERE description = "Alle leerlingen" AND course = "rekenen" AND date LIKE "%{$today}%" 
+            SELECT id FROM leaderboard WHERE description = "Alle leerlingen" AND course = "Rekenen" AND date LIKE "%{$today}%" 
 EOT
             );
                         $x = -1;
