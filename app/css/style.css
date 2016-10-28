@@ -142,3 +142,12 @@ div.Rekenen.single-slide div.khan-bar {
 	padding: 30px;
 }
 
+/* ENGELS template*/
+
+
+div.Engels.single-slide {
+	background-image: url("../images/meme.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position-y: -100px;
+}
