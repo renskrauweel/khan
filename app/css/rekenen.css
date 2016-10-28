@@ -3,15 +3,14 @@
 body {
 	overflow: hidden;
 }
-
-div.background {
-    background-image: url("../images/space.jpg"); /* fallback */
-    background-size: cover;
-}
 div.content {
 	margin: 100px;
 }
-li {
+div.rekenen div.background {
+    background-image: url("../images/space.jpg"); /* fallback */
+    background-size: cover;
+}
+div.rekenen li {
 	height: 65px;
 	width: 100%;
 	white-space: nowrap;
@@ -21,7 +20,7 @@ li {
 div.single-slide {
 	height: 100%;
 }
-div.class-mid h2 {
+div.rekenen div.class-mid h2 {
 	margin: 0;
 	font-size: 40px;
 	text-align: center;
@@ -31,8 +30,8 @@ div.class-mid h2 {
 	z-index: 999;
 }
 
-div.class-left ol,
-div.class-right ol {
+div.rekenen div.class-left ol,
+div.rekenen div.class-right ol {
 	padding: 0 0 0 40px;
 	font-size: 40px;
 	color: #fff;
@@ -40,14 +39,14 @@ div.class-right ol {
 	font-family: 'Raleway', sans-serif;
 }
 
-div.class-right {
+div.rekenen div.class-right {
 	margin: 0 auto;
 	margin-top: 20px;
 	width: 48%;
 	float: right;
 	border-radius: 5px;
 }
-div.class-right h2 {
+div.rekenen div.class-right h2 {
 	margin: 0;
 	font-size: 40px;
 	text-align: center;
@@ -58,7 +57,7 @@ div.class-right h2 {
 	margin-bottom: 5px;
 	z-index: 999;
 }
-div.class-left h2 {
+div.rekenen div.class-left h2 {
 	margin: 0 auto;
 	float:left;
 	margin-top: 300px;
@@ -68,7 +67,7 @@ div.class-left h2 {
 	font-family: 'PT Sans', sans-serif;
 
 }
-div.khan-bar {
+div.rekenen div.khan-bar {
 	width: 100%;
 	background-color: #3B414F;
 	background-image: url("../images/khan_logo.png");
