@@ -146,8 +146,17 @@ div.Rekenen.single-slide div.khan-bar {
 
 
 div.Engels.single-slide {
-	background-image: url("../images/meme.jpg");
+	background-image: url("../images/background-english.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-y: -100px;
 }
+
+	div.Engels.single-slide .khan-bar {
+		background-image: url(../images/english-background.png);
+		background-repeat: no-repeat;
+		background-size: 200px auto;
+		background-position: center;
+		background-position-y: -25px;
+		padding: 30px;
+	}
