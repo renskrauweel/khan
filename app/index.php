@@ -44,11 +44,11 @@
 				echo <<<EOT
 	
 				<div class="{$data['today'][$i]['course']} single-slide">
-					<div class="khan-bar"></div>
+					<div class="header"></div>
 	     			 	<div class="class-mid">
 		     			 
 		     				</div>
-		     				 <div class="content">
+		     				<div class="content">
 
 		   					<div class="class-left">
 

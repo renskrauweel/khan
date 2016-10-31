@@ -61,7 +61,7 @@ div.class-left h2 {
 	font-family: 'PT Sans', sans-serif;
 
 }
-div.khan-bar {
+div.header {
 	width: 100%;
 	padding: 15px;
 	background-color: #3B414F;
@@ -131,7 +131,7 @@ div.Rekenen.single-slide div.class-left h2 {
 	font-family: 'PT Sans', sans-serif;
 
 }
-div.Rekenen.single-slide div.khan-bar {
+div.Rekenen.single-slide div.header {
 	width: 100%;
 	background-color: #3B414F;
 	background-image: url("../images/khan_logo.png");
@@ -151,12 +151,11 @@ div.Engels.single-slide {
 	background-size: cover;
 	background-position-y: -100px;
 }
-
-	div.Engels.single-slide .khan-bar {
-		background-image: url(../images/english-background.png);
-		background-repeat: no-repeat;
-		background-size: 200px auto;
-		background-position: center;
-		background-position-y: -25px;
-		padding: 30px;
-	}
+div.Engels.single-slide .header {
+	background-image: url(../images/english-background.png);
+	background-repeat: no-repeat;
+	background-size: 200px auto;
+	background-position: center;
+	background-position-y: -25px;
+	padding: 30px;
+}
