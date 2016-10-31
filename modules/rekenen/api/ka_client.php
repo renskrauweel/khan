@@ -154,7 +154,7 @@ if (!empty($_GET['login'])) {
             //Students by class
             $studentsByClass = [];
 
-            $file = fopen(dirname(__FILE__)."/../../../app/klassen.csv","r");
+            $file = fopen(dirname(__FILE__)."/../../../klassen.csv","r");
             $classes = Leaderboard::sortByClass($file);
 
             foreach ($classes as $class => $studentMails) {
