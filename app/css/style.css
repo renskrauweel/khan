@@ -23,7 +23,6 @@ div.class-mid h2 {
 	padding: 8px;
 	z-index: 999;
 }
-
 div.class-left ol,
 div.class-right ol {
 	padding: 0 0 0 40px;
@@ -32,7 +31,6 @@ div.class-right ol {
 	/* list-style-type: none; */
 	font-family: 'Raleway', sans-serif;
 }
-
 div.class-right {
 	margin: 0 auto;
 	margin-top: 20px;
@@ -59,18 +57,11 @@ div.class-left h2 {
 	text-align: center;
 	color: #fff;
 	font-family: 'PT Sans', sans-serif;
-
 }
 div.header {
 	width: 100%;
 	padding: 15px;
 	background-color: #3B414F;
-}
-div.khan-logo img {
-	width: 400px;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* REKENEN template*/
@@ -83,7 +74,6 @@ div.Rekenen.single-slide li {
 	/* overflow: hidden; */
 	text-overflow: ellipsis;
 }
-
 div.Rekenen.single-slide div.class-mid h2 {
 	margin: 0;
 	font-size: 40px;
@@ -93,7 +83,6 @@ div.Rekenen.single-slide div.class-mid h2 {
 	padding: 8px;
 	z-index: 999;
 }
-
 div.Rekenen.single-slidediv.class-left ol,
 div.Rekenen.single-slide div.class-right ol {
 	padding: 0 0 0 40px;
@@ -102,7 +91,6 @@ div.Rekenen.single-slide div.class-right ol {
 	/* list-style-type: none; */
 	font-family: 'Raleway', sans-serif;
 }
-
 div.Rekenen.single-slide div.class-right {
 	margin: 0 auto;
 	margin-top: 20px;
@@ -129,7 +117,6 @@ div.Rekenen.single-slide div.class-left h2 {
 	text-align: center;
 	color: #fff;
 	font-family: 'PT Sans', sans-serif;
-
 }
 div.Rekenen.single-slide div.header {
 	width: 100%;
@@ -143,7 +130,6 @@ div.Rekenen.single-slide div.header {
 }
 
 /* ENGELS template*/
-
 
 div.Engels.single-slide {
 	background-image: url("../images/background-english.jpg");
