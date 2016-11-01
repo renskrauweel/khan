@@ -63,17 +63,17 @@
 							</div>
 
 							<div class="class-right">
-							<h2>GISTEREN</h2>
-								<ol>
-									<li class="gold"><span>{$data['yesterday'][$i]['first']}</span></li>
-									<li class="silver"><span>{$data['yesterday'][$i]['second']}</span></li>
-									<li class="bronze"><span>{$data['yesterday'][$i]['third']}</span></li>
-								</ol>
 							<h2>VANDAAG</h2>
 								<ol>
 									<li class="gold"><span>{$data['today'][$i]['first']}</span></li>
 									<li class="silver"><span>{$data['today'][$i]['second']}</span></li>
 									<li class="bronze"><span>{$data['today'][$i]['third']}</span></li>
+								</ol>
+							<h2>GISTEREN</h2>
+								<ol>
+									<li class="gold"><span>{$data['yesterday'][$i]['first']}</span></li>
+									<li class="silver"><span>{$data['yesterday'][$i]['second']}</span></li>
+									<li class="bronze"><span>{$data['yesterday'][$i]['third']}</span></li>
 								</ol>
 							</div>
 						</div>	
