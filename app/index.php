@@ -14,6 +14,13 @@
         hashchange: true
       });
     });
+
+    //Refreshing interval
+    var time = 1000 * 60 * 60 // 1 hour
+	setTimeout(function(){
+		location.reload();
+   	},time);
+
   </script>
 	<title>Khan Board</title>
 </head>
