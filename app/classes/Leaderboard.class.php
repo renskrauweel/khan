@@ -1,7 +1,5 @@
 <?php
 
-
-
 	Class Leaderboard
 	{
 		public static function getData()
@@ -13,6 +11,7 @@
 			$mysqli=DB::get();
 			$yx = 0;
 			$tx = 0;
+
 			//Today
 			$resultToday=$mysqli->query(<<<EOT
 			SELECT * FROM leaderboard WHERE date LIKE "%{$today}%"
@@ -97,6 +96,7 @@ EOT
 			}
 			return $classes;
 		}
+
 		public static function getSession()
 		{
 			$mysqli=DB::get();
@@ -110,6 +110,7 @@ EOT
 			$session_return = str_ireplace("dit teken kan er niet in", "//", $session_return);
 			return($session_return);
 		}
+
 		public static function setSession($session_json)
 		{
 			$link = mysqli_connect(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_DATABASE);
@@ -127,10 +128,11 @@ EOT
 		{
 			if (count($data['yesterday']) <= count($data['today'])) {
  				$length = count($data['today']);
- 			}else{
+ 			} else {
  				$length = count($data['yesterday']);
  			}
-			for($i =0; $i<= $length -1; $i++) {
+ 			
+			for ($i =0; $i<= $length -1; $i++) {
 				if($i >= count($data['yesterday']) )
 				{
 					$data['yesterday'][$i]['first'] = "";

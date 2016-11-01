@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>leaderboard</title>
-    <script>
-    //    document.getElementById("sknop").click();\
-
-    var time = 1000 * 60 * 60 // 1 hour
-	setTimeout(function(){
-		location.reload();
-   	},time);
-
-    </script>
-</head>
-<body>
-
-</body>
-</html>
 <?php
 date_default_timezone_set('Europe/Amsterdam');
 session_start();
@@ -37,14 +19,11 @@ include_once dirname(__FILE__).'/../../rekenen/classes/rekenmodule.class.php';
 
 if(Leaderboard::getSession() != "")
 {
-    //var_dump(Leaderboard::getSession());
     if (Leaderboard::getSession() == "") {
         $session_json =  $_SESSION;
         Leaderboard::setSession($session_json);
         $_SESSION = unserialize(Leaderboard::getSession());
-        //var_dump(Leaderboard::getSession());
-
-    }else
+    } else
     {
         $_SESSION = unserialize(Leaderboard::getSession());
     }
@@ -109,11 +88,11 @@ if (!empty($_GET['login'])) {
     header('Location: ka_client.php?logged_in=1');
 
 } elseif (!empty($_GET['logged_in']) || Leaderboard::getSession() != "" ) {
-        if (Leaderboard::getSession() == "") {
-            $session_json =  serialize($_SESSION);
-            Leaderboard::setSession($session_json);
-            $_SESSION = unserialize(Leaderboard::getSession());
-        }
+    if (Leaderboard::getSession() == "") {
+        $session_json =  serialize($_SESSION);
+        Leaderboard::setSession($session_json);
+        $_SESSION = unserialize(Leaderboard::getSession());
+    }
 
     /*
      * Main logged-in page. Display a form for typing in a query, and execute a
@@ -127,122 +106,54 @@ if (!empty($_GET['login'])) {
     if (!$defaultQuery) {
         $defaultQuery = '/api/v1/user/students';
     }
-        $request = new OAuthRequester($baseUrl.$defaultQuery, 'GET');
-        $result = $request->doRequest(0);
-        $resultObject = json_decode($result['body']);
-        $students = leaderboard::getStudentsAlltime($resultObject);
+    $request = new OAuthRequester($baseUrl.$defaultQuery, 'GET');
+    $result = $request->doRequest(0);
+    $resultObject = json_decode($result['body']);
+    $students = leaderboard::getStudentsAlltime($resultObject);
 
-        RekenModule::insertStudents($students);
-        
-        //students all time
-        //if (!key_exists("update_classes",$_COOKIE)) {
-            //setcookie("update_classes", "false", time() + 3600 * 24);
-            $students = [];
-         //   echo "<h1>Alle studenten</h1>";
+    RekenModule::insertStudents($students);
+
+    //students all time
+    $students = [];
+    foreach ($resultObject as $student) {
+        //Count last 3 badgetypes
+        $badgeCount = 0;
+        for ($i=3; $i <=5 ; $i++) { 
+            $badgeCount += $student->badge_counts->$i;
+        }
+
+        $students[$student->student_summary->nickname] = $badgeCount;
+    }
+    arsort($students);        
+    //Students by class
+    $studentsByClass = [];
+
+    $file = fopen(dirname(__FILE__)."/../../../klassen.csv","r");
+    $classes = Leaderboard::sortByClass($file);
+
+    foreach ($classes as $class => $studentMails) {
+        foreach ($studentMails as $studentMail) {
             foreach ($resultObject as $student) {
-           //var_dump($student);
-
-                //Count last 3 badgetypes
-                $badgeCount = 0;
-                for ($i=3; $i <=5 ; $i++) { 
-                    $badgeCount += $student->badge_counts->$i;
-                }
-
-                $students[$student->student_summary->nickname] = $badgeCount;
-            }
-            arsort($students);        
-            //Students by class
-            $studentsByClass = [];
-
-            $file = fopen(dirname(__FILE__)."/../../../klassen.csv","r");
-            $classes = Leaderboard::sortByClass($file);
-
-            foreach ($classes as $class => $studentMails) {
-                foreach ($studentMails as $studentMail) {
-                    foreach ($resultObject as $student) {
-                        if ($student->student_summary->email == $studentMail) {
-                            $badgeCount = 0;
-                            for ($i=3; $i <=5 ; $i++) { 
-                                $badgeCount += $student->badge_counts->$i;
-                            }
-                            //add to array
-                            $studentsByClass[$class][$student->student_summary->nickname] = $badgeCount;
-                        }
+                if ($student->student_summary->email == $studentMail) {
+                    $badgeCount = 0;
+                    for ($i=3; $i <=5 ; $i++) { 
+                        $badgeCount += $student->badge_counts->$i;
                     }
+                    //add to array
+                    $studentsByClass[$class][$student->student_summary->nickname] = $badgeCount;
                 }
             }
-            rekenmodule::insertStudentsByClass($studentsByClass);
-            //Sorting the classes
-            //var_dump($studentsByClass);
-//            foreach ($studentsByClass as $class => $students) {
-//                arsort($students);
-//                $description = $class;
-//                $counter = 1;
-//                $first = "";
-//                $second = "";
-//                $third = "";
-//                foreach ($students as $student => $badgeCount) {
-//                    switch ($counter) {
-//                        case 1:
-//                            if (!empty($student)) {
-//                                $first = $student;
-//                            }
-//                            break;
-//                        case 2:
-//                            if (!empty($student)) {
-//                                $second = $student;
-//                            }
-//                            break;
-//                        case 3:
-//                            if (!empty($student)) {
-//                                $third = $student;
-//                            }
-//                            break;
-//                        
-//                        default:
-//                            break;
-//                    }
-//                    $counter++;
-//                }
-//                /*
-//                    echo "<b>Description: {$description}</b><br>";
-//                    echo "First: {$first}<br>";
-//                    echo "Second: {$second}<br>";
-//                    echo "Third: {$third}<br>";
-//                    */
-//                    //Query
-//                    $mysqli=DB::get();
-//                     if(!key_exists("update_classes",$_COOKIE))
-//                    {
-//                        $result=$mysqli->query(<<<EOT
-//                        INSERT INTO leaderboard (course, description, first, second, third)
-//                        VALUES ("Rekenen", "{$description}", "{$first}", "{$second}", "{$third}")
-//EOT
-//                    );
-//                    } else{
-//                        $today = date("o-m-d");
-//                        $resultToday=$mysqli->query(<<<EOT
-//            SELECT id FROM leaderboard WHERE description = "{$description}" AND course = "Rekenen" AND date LIKE "%{$today}%" 
-//EOT
-//            );
-//                        var_dump($resultToday);
-//                        while ($rowToday=$resultToday->fetch_row()){
-//                $data = $rowToday[0];
-//            }
-//                        var_dump($resultToday);
-//                        $result=$mysqli->query(<<<EOT
-//                        UPDATE leaderboard SET  first = "{$first}", second = "{$second}", third = "{$third}", date = NOW() WHERE id = {$data}
-//EOT
-//                    );
-//                    }
-//            }
-        //}    
+        }
+    }
+    rekenmodule::insertStudentsByClass($studentsByClass);
+
     if (!empty($_GET['query'])) {
         $request = new OAuthRequester($baseUrl.$_GET['query'], 'GET');
         $result = $request->doRequest(0);
         $resultObject = json_decode($result['body']);
         //var_dump($resultObject);
     }
+
 } else {
     /*
      * Default handler: show a button that redirects to the login handler.

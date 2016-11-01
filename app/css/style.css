@@ -4,7 +4,7 @@ body {
 div.content {
 	margin: 100px;
 }
- div.background {
+div.background {
     background-image: url("../images/space.jpg"); /* fallback */
     background-size: cover;
 }
@@ -14,23 +14,23 @@ div.single-slide {
 
 /* BACKUP template */
 
-div.class-mid h2 {
-	margin: 0;
-	font-size: 40px;
-	text-align: center;
-	color: #fff;
-	font-family: 'PT Sans', sans-serif;
-	padding: 8px;
-	z-index: 999;
-}
-div.class-left ol,
-div.class-right ol {
-	padding: 0 0 0 40px;
-	font-size: 40px;
-	color: #fff;
-	/* list-style-type: none; */
-	font-family: 'Raleway', sans-serif;
-}
+	div.class-mid h2 {
+		margin: 0;
+		font-size: 40px;
+		text-align: center;
+		color: #fff;
+		font-family: 'PT Sans', sans-serif;
+		padding: 8px;
+		z-index: 999;
+	}
+	div.class-left ol,
+	div.class-right ol {
+		padding: 0 0 0 40px;
+		font-size: 40px;
+		color: #fff;
+		/* list-style-type: none; */
+		font-family: 'Raleway', sans-serif;
+	}
 div.class-right {
 	margin: 0 auto;
 	margin-top: 20px;
@@ -38,26 +38,26 @@ div.class-right {
 	float: right;
 	border-radius: 5px;
 }
-div.class-right h2 {
-	margin: 0;
-	font-size: 40px;
-	text-align: center;
-	color: #fff;
-	font-family: 'PT Sans', sans-serif;
-	background: rgba(54, 25, 25, .5);
-	padding: 8px;
-	margin-bottom: 5px;
-	z-index: 999;
-}
-div.class-left h2 {
-	margin: 0 auto;
-	float:left;
-	margin-top: 300px;
-	font-size: 90px;
-	text-align: center;
-	color: #fff;
-	font-family: 'PT Sans', sans-serif;
-}
+	div.class-right h2 {
+		margin: 0;
+		font-size: 40px;
+		text-align: center;
+		color: #fff;
+		font-family: 'PT Sans', sans-serif;
+		background: rgba(54, 25, 25, .5);
+		padding: 8px;
+		margin-bottom: 5px;
+		z-index: 999;
+	}
+	div.class-left h2 {
+		margin: 0 auto;
+		float:left;
+		margin-top: 300px;
+		font-size: 90px;
+		text-align: center;
+		color: #fff;
+		font-family: 'PT Sans', sans-serif;
+	}
 div.header {
 	width: 100%;
 	padding: 15px;
@@ -73,50 +73,50 @@ div.Rekenen.single-slide li {
 	/* overflow: hidden; */
 	text-overflow: ellipsis;
 }
-div.Rekenen.single-slide div.class-mid h2 {
-	margin: 0;
-	font-size: 40px;
-	text-align: center;
-	color: #fff;
-	font-family: 'PT Sans', sans-serif;
-	padding: 8px;
-	z-index: 999;
-}
-div.Rekenen.single-slidediv.class-left ol,
-div.Rekenen.single-slide div.class-right ol {
-	padding: 0 0 0 40px;
-	font-size: 40px;
-	color: #fff;
-	/* list-style-type: none; */
-	font-family: 'Raleway', sans-serif;
-}
-div.Rekenen.single-slide div.class-right {
-	margin: 0 auto;
-	margin-top: 20px;
-	width: 48%;
-	float: right;
-	border-radius: 5px;
-}
-div.Rekenen.single-slide div.class-right h2 {
-	margin: 0;
-	font-size: 40px;
-	text-align: center;
-	color: #fff;
-	font-family: 'PT Sans', sans-serif;
-	background: rgba(54, 25, 25, .5);
-	padding: 8px;
-	margin-bottom: 5px;
-	z-index: 999;
-}
-div.Rekenen.single-slide div.class-left h2 {
-	margin: 0 auto;
-	float:left;
-	margin-top: 300px;
-	font-size: 90px;
-	text-align: center;
-	color: #fff;
-	font-family: 'PT Sans', sans-serif;
-}
+	div.Rekenen.single-slide div.class-mid h2 {
+		margin: 0;
+		font-size: 40px;
+		text-align: center;
+		color: #fff;
+		font-family: 'PT Sans', sans-serif;
+		padding: 8px;
+		z-index: 999;
+	}
+	div.Rekenen.single-slidediv.class-left ol,
+	div.Rekenen.single-slide div.class-right ol {
+		padding: 0 0 0 40px;
+		font-size: 40px;
+		color: #fff;
+		/* list-style-type: none; */
+		font-family: 'Raleway', sans-serif;
+	}
+	div.Rekenen.single-slide div.class-right {
+		margin: 0 auto;
+		margin-top: 20px;
+		width: 48%;
+		float: right;
+		border-radius: 5px;
+	}
+	div.Rekenen.single-slide div.class-right h2 {
+		margin: 0;
+		font-size: 40px;
+		text-align: center;
+		color: #fff;
+		font-family: 'PT Sans', sans-serif;
+		background: rgba(54, 25, 25, .5);
+		padding: 8px;
+		margin-bottom: 5px;
+		z-index: 999;
+	}
+	div.Rekenen.single-slide div.class-left h2 {
+		margin: 0 auto;
+		float:left;
+		margin-top: 300px;
+		font-size: 90px;
+		text-align: center;
+		color: #fff;
+		font-family: 'PT Sans', sans-serif;
+	}
 div.Rekenen.single-slide div.header {
 	width: 100%;
 	background-color: #3B414F;
@@ -136,11 +136,11 @@ div.Engels.single-slide {
 	background-size: cover;
 	background-position-y: -100px;
 }
-div.Engels.single-slide .header {
-	background-image: url(../images/english-background.png);
-	background-repeat: no-repeat;
-	background-size: 200px auto;
-	background-position: center;
-	background-position-y: -25px;
-	padding: 30px;
-}
+	div.Engels.single-slide .header {
+		background-image: url(../images/english-background.png);
+		background-repeat: no-repeat;
+		background-size: 200px auto;
+		background-position: center;
+		background-position-y: -25px;
+		padding: 30px;
+	}

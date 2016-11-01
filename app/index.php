@@ -25,14 +25,13 @@
 	<title>Khan Board</title>
 </head>
 <body>
-<?php 
+<?php
+
 	require_once("autoload.php");
 	require_once("../modules/rekenen/api/ka_client.php");
-  $data = Leaderboard::getData();
-  //var_dump($data);
+	$data = Leaderboard::getData();
 
-
- ?>
+?>
 	<div class="background">
  		<div id="slides">
 			<div class="slides-container">
@@ -40,14 +39,13 @@
 
      			if (count($data['yesterday']) <= count($data['today'])) {
      				$length = count($data['today']);
-     			}else{
+     			} else {
      				$length = count($data['yesterday']);
      			}
 
      			$data = Leaderboard::repairLeaderboardArray($data);
-				for($i =0; $i<= $length -1; $i++) {
+				for ($i =0; $i<= $length -1; $i++) {
 
-				//var_dump($i);
 				echo <<<EOT
 	
 				<div class="{$data['today'][$i]['course']} single-slide">
@@ -81,7 +79,6 @@
 				</div>
 EOT;
 				}
-     			
 
  				?>
  			</div>
