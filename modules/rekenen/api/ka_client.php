@@ -5,7 +5,7 @@
     <script>
     //    document.getElementById("sknop").click();\
 
-    var time = 1000 * 60 * 60 // 24 hours
+    var time = 1000 * 60 * 60 // 1 hour
 	setTimeout(function(){
 		location.reload();
    	},time);
